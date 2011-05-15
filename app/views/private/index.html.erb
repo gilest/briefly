@@ -1,0 +1,53 @@
+<div id="articles">
+	<% count = 1 %>
+	<% for article in @articles %>
+		<a target="_blank" class="article" href="<%= article.link %>" id="<%= article.position %>">
+			<div class="article_banner no<%= count %>"><%= count %></div>
+			<h2><%= article.title %></h2>
+			<% if count == 1 %>
+				<div class="button"></div>
+			<% end %>
+			<img src="<%= article.image.url %>" alt="<%= article.title %>" />
+			<div class="article_text"><%= article.text %></div>
+		</a>
+		<div class="admin_controls"><%= article.position.to_s %> | <%= link_to 'Up', up_article_path(article.id) %> | <%= link_to 'Down', down_article_path(article.id) %> | <%= link_to 'Edit', edit_article_path(article.id) %> | <%= link_to 'Delete', destroy_article_path(article.id) %></div>
+		<% count = count + 1 %>
+	<% end %>
+</div>
+
+<div id="article_form">
+	<%= form_for(@article, :url => article_path, :html => { :multipart => true }) do |f| %>
+	  <% if @article.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this store from being saved:</h2>
+
+	      <ul>
+	      <% @article.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+		<div id="prettyform">
+		  <div class="field">
+		    <%= f.text_field :title, :value => 'New Article Title' %>
+		  </div>
+		  <div class="field_image">
+		    <%= f.file_field :image %>
+		  </div>
+			<div class="field_text">
+		    <%= f.text_area :text, :value => 'New article summary text.' %>
+		  </div>
+		  <div class="field_link">
+		    <%= f.text_field :link, :value => 'http://hookup.co.nz' %>
+		  </div>
+		<div class="field">
+		    <%= f.hidden_field :position, :value => (@articles.empty? ? '1' : @articles.last.position + 1) %>
+		  </div>
+		  <div class="actions_submit">
+		    <%= f.submit %>
+		  </div>
+		</div>
+	<% end %>
+</div>
