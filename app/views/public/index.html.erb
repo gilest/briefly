@@ -1,0 +1,15 @@
+<div id="articles">
+	<% count = 1 %>
+	<% for article in @articles %>
+		<a target="_blank" class="article" href="<%= article.link %>">
+			<div class="article_banner no<%= count %>"><%= count %></div>
+			<h2><%= article.title %></h2>
+			<% if count == 1 %>
+				<div class="button"></div>
+			<% end %>
+			<img src="<%= article.image %>" alt="<%= article.title %>" />
+			<div class="article_text"><%= article.text %></div>
+		</a>
+		<% count = count + 1 %>
+	<% end %>
+</div>
