@@ -4,23 +4,33 @@ class PrivateController < ApplicationController
   
   def index
     @article = Article.new
-    if request.post?
-      @new_article = Article.new(params[:article])
-      if @new_article.save
-        flash[:notice] = "Article saved"
-      end
-    end
     @articles = Article.order("`position` asc")
+  end
+  
+  def create
+    @article = Article.new(params[:article])
+    if @article.save
+      flash[:notice] = "Successfully created user."  
+      redirect_to crop_article_path(@article), :notice => "Article updated"
+    end
   end
 
   def edit
     @article = Article.find(params[:id])
   end
   
+  def crop
+    @article = Article.find(params[:id])
+  end
+  
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
-      redirect_to article_path, :notice => "Article updated"
+      if params[:article][:image].blank?
+        redirect_to article_path, :notice => "Article updated"
+      else
+       render :action => "crop"
+     end
     end
   end
   

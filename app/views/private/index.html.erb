@@ -10,13 +10,13 @@
 			<img src="<%= article.image(:banner) %>" alt="<%= article.title %>" />
 			<div class="article_text"><%= article.text %></div>
 		</a>
-		<div class="admin_controls"><%= article.position.to_s %> | <%= link_to 'Up', up_article_path(article.id) %> | <%= link_to 'Down', down_article_path(article.id) %> | <%= link_to 'Edit', edit_article_path(article.id) %> | <%= link_to 'Delete', destroy_article_path(article.id) %></div>
+		<div class="admin_controls"><%= article.position.to_s %> | <%= link_to 'Up', up_article_path(article.id) %> | <%= link_to 'Down', down_article_path(article.id) %> | <%= link_to 'Crop', crop_article_path(article.id) %>| <%= link_to 'Edit', edit_article_path(article.id) %> | <%= link_to 'Delete', destroy_article_path(article.id) %></div>
 		<% count = count + 1 %>
 	<% end %>
 </div>
 
 <div id="article_form">
-	<%= form_for(@article, :url => article_path, :html => { :multipart => true }) do |f| %>
+	<%= form_for(@article, :url => create_article_path, :html => { :multipart => true }) do |f| %>
 	  <% if @article.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this store from being saved:</h2>
