@@ -5,8 +5,8 @@ class PrivateController < ApplicationController
   def index
     @article = Article.new
     if request.post?
-      @article = Article.new(params[:article])
-      if @article.save
+      @new_article = Article.new(params[:article])
+      if @new_article.save
         flash[:notice] = "Article saved"
       end
     end
