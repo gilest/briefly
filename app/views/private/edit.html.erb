@@ -1,7 +1,7 @@
 <a target="_blank" class="article" href="<%= @article.link %>">
 	<div class="article_banner no1">1</div>
 	<h2><%= @article.title %></h2>
-	<img src="<%= @article.image %>" alt="<%= @article.title %>" />
+	<img src="<%= @article.image(:banner) %>" alt="<%= @article.title %>" />
 	<div class="article_text"><%= @article.text %></div>
 </a>
 
