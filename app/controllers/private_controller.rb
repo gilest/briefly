@@ -10,8 +10,7 @@ class PrivateController < ApplicationController
   def create
     @article = Article.new(params[:article])
     if @article.save
-      flash[:notice] = "Successfully created user."  
-      redirect_to crop_article_path(@article), :notice => "Article updated"
+      redirect_to crop_article_path(@article), :notice => "Article created"
     end
   end
 
