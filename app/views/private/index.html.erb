@@ -29,23 +29,22 @@
 	    </div>
 	  <% end %>
 
-		<div id="prettyform">
-		  <div class="field">
+		<div class="edit_article_form">
+			<div class="article_banner no1"></div>
+			<div class="field">
 		    <%= f.text_field :title, :value => '' %>
 		  </div>
-		  <div class="field_image">
-		    <%= f.file_field :image %>
+			<div class="field_image">
+		    <div class="upload_wrap"><%= f.file_field :image %></div>
 		  </div>
 			<div class="field_text">
 		    <%= f.text_area :text, :value => '' %>
 		  </div>
-		  <div class="field_link">
+			<div class="field_link">
 		    <%= f.text_field :link, :value => '' %>
 		  </div>
-		<div class="field">
-		    <%= f.hidden_field :position, :value => (@articles.empty? ? '1' : @articles.last.position + 1) %>
-		  </div>
-		  <div class="actions_submit">
+			<div class="actions_submit">
+				<%= f.hidden_field :position, :value => (@articles.empty? ? '1' : @articles.last.position + 1) %>
 		    <%= f.submit %>
 		  </div>
 		</div>
