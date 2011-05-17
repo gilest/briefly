@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Briefly - Fast news for short attention spans</title>
+	<% unless params[:controller] == "private" %>
+		<title>Briefly - Fast news for short attention spans</title>
+	<% else %>
+		<title>Briefly - Admin</title>
+	<% end %>
 	<%= stylesheet_link_tag :all %>
 	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   	<script type="text/javascript" language="javascript" src="/javascripts/supersleight.plugin.js"></script>
