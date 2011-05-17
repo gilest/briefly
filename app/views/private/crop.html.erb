@@ -26,7 +26,7 @@
 <div id="crop_form">
 	<%= form_for(@article, :url => update_article_path) do |f| %>
 	  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-	    <%= f.text_field attribute, :id => attribute %>
+	    <%= f.hidden_field attribute, :id => attribute %>
 	  <% end %>
 	  <%= f.submit "Crop" %>
 	<% end %>
