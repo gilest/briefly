@@ -8,9 +8,12 @@ class PrivateController < ApplicationController
   end
   
   def create
+    @articles = Article.order("`position` asc")
     @article = Article.new(params[:article])
     if @article.save
       redirect_to crop_article_path(@article), :notice => "Article created"
+    else
+      render :action => "index", :anchor => 'error_explanation'
     end
   end
 
@@ -26,10 +29,12 @@ class PrivateController < ApplicationController
     @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
       if params[:article][:image].blank?
-        redirect_to article_path, :notice => "Article updated"
+        redirect_to articles_path, :notice => "Article updated"
       else
-       render :action => "crop"
-     end
+       redirect_to crop_article_path(@article)
+      end
+    else
+      render :action => :edit
     end
   end
   
@@ -54,9 +59,9 @@ class PrivateController < ApplicationController
       @above.update_attributes(:position => below)
       @article.update_attributes(:position => above)
       
-      redirect_to article_path(:anchor => @article.position), :notice => "Article moved up"
+      redirect_to articles_path(:anchor => @article.position), :notice => "Article moved up"
     else
-      redirect_to article_path(:anchor => @article.position), :notice => "Article already first"
+      redirect_to articles_path(:anchor => @article.position), :notice => "Article already first"
     end
   end
   
@@ -81,16 +86,16 @@ class PrivateController < ApplicationController
       @below.update_attributes(:position => above)
       @article.update_attributes(:position => below)
       
-      redirect_to article_path(:anchor => @article.position), :notice => "Article moved down"
+      redirect_to articles_path(:anchor => @article.position), :notice => "Article moved down"
     else
-      redirect_to article_path(:anchor => @article.position), :notice => "Article already last"
+      redirect_to articles_path(:anchor => @article.position), :notice => "Article already last"
     end
   end
   
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to article_path, :notice => "Article destroyed"
+    redirect_to articles_path, :notice => "Article destroyed"
   end
   
   protected

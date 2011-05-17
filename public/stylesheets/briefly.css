@@ -116,6 +116,9 @@ img {
 	font-size: 12px;
 	float: right;
 }
+.admin_controls a, .admin_controls a:hover, .admin_controls a:visited, .admin_controls a:active {
+	color: blue;
+}
 #prettyform {
 	background: url('/images/article_bg.png') no-repeat;
 	padding-left: 9px;
@@ -178,6 +181,44 @@ img {
 #article_submit {
 	width: 520px;
 }
+.edit_article_form {
+	display: block;
+	width: 660px;
+	padding: 0 10px 0 9px;
+	margin-bottom: 20px;
+	background: url('/images/article_bg.png') no-repeat;
+	text-decoration: none;
+	clear: both;
+	_position: relative;
+}
+.edit_article_form #article_title {
+	padding-top: 0;
+	margin: 17px 0 32px 0;
+}
+.edit_article_form .field_image {
+	width: 661px;
+	height: 79px;
+	margin: 0;
+	padding: 105px 0 55px;
+}
+.edit_article_form .upload_wrap {
+	width: 225px;
+	margin: 0 auto;
+}
+.edit_article_form .field_text {
+	padding: 9px 0 20px;
+}
+.edit_article_form .field_link {
+	margin-top: 0;
+}
+
+#error_explanation {
+	color: red;
+	background: #eee;
+	border: 1px solid #999;
+	padding: 10px;
+}
+
 
 .no1 {
 	padding-left: 1px;

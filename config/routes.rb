@@ -1,6 +1,6 @@
 Huffpost::Application.routes.draw do
   
-  match "admin" => 'private#index', :as => "article"
+  match "admin" => 'private#index', :as => "articles"
   match "admin/create" => 'private#create', :as => "create_article"
   match "admin/crop/:id" => 'private#crop', :as => "crop_article"
   match "admin/update/:id" => 'private#update', :as => "update_article"
