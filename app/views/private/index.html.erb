@@ -44,7 +44,7 @@
 		    <%= f.text_field :link, :value => '' %>
 		  </div>
 			<div class="actions_submit">
-				<%= f.hidden_field :position, :value => (@articles.empty? ? '1' : @articles.last.position + 1) %>
+				<%= f.hidden_field :position, :value => (@articles.empty? ? '1' : @articles.first.position - 1) %>
 		    <%= f.submit %>
 		  </div>
 		</div>
