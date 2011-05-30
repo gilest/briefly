@@ -11,6 +11,7 @@ class PrivateController < ApplicationController
     @articles = Article.order("`position` asc")
     @article = Article.new(params[:article])
     if @article.save
+      reorder_articles
       redirect_to crop_article_path(@article), :notice => "Article created"
     else
       render :action => "index", :anchor => 'error_explanation'
@@ -59,6 +60,8 @@ class PrivateController < ApplicationController
       @above.update_attributes(:position => below)
       @article.update_attributes(:position => above)
       
+      reorder_articles
+      
       redirect_to articles_path(:anchor => @article.position), :notice => "Article moved up"
     else
       redirect_to articles_path(:anchor => @article.position), :notice => "Article already first"
@@ -86,6 +89,9 @@ class PrivateController < ApplicationController
       @below.update_attributes(:position => above)
       @article.update_attributes(:position => below)
       
+      
+      reorder_articles
+      
       redirect_to articles_path(:anchor => @article.position), :notice => "Article moved down"
     else
       redirect_to articles_path(:anchor => @article.position), :notice => "Article already last"
@@ -95,6 +101,7 @@ class PrivateController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
+    reorder_articles
     redirect_to articles_path, :notice => "Article destroyed"
   end
   
@@ -103,6 +110,16 @@ class PrivateController < ApplicationController
   def authenticate
     authenticate_or_request_with_http_basic do |user_name, password|
       user_name == "George" && password == "babelfish"
+    end
+  end
+  
+  def reorder_articles
+    # reassign position integers
+    @articles_for_ordering = Article.order("position asc").all
+    count = 1
+    for article in @articles_for_ordering
+      article.update_attributes(:position => count)
+      count = count + 1
     end
   end
 
