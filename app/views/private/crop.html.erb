@@ -13,7 +13,7 @@
 		function update_crop(coords) {
 		  var rx = 661/coords.w;
 		  var ry = 240/coords.h;
-		  var ratio = <%= @article.avatar_geometry(:original).width %> / <%= @article.avatar_geometry(:large).width %>;
+		  var ratio = <%= @article.avatar_geometry(:original).width %> / 661;
 		  $("#crop_x").val(Math.round(coords.x * ratio));
 		  $("#crop_y").val(Math.round(coords.y * ratio));
 		  $("#crop_w").val(Math.round(coords.w * ratio));

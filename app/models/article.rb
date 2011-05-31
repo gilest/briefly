@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   validates_presence_of :title, :image, :link, :position
-  has_attached_file :image, :styles => { :banner => "661x240#", :large => "661x" }, :processors => [:cropper]
+  has_attached_file :image, :styles => { :banner => "661x240#" }, :processors => [:cropper]
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_image, :if => :cropping?
   
