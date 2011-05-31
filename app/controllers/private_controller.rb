@@ -114,7 +114,7 @@ class PrivateController < ApplicationController
   end
   
   def reorder_articles
-    # reassign position integers
+    # reassigns incrementing position integers
     @articles_for_ordering = Article.order("position asc").all
     count = 1
     for article in @articles_for_ordering
