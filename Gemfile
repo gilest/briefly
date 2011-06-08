@@ -4,7 +4,6 @@ gem 'rails', '3.0.5'
 gem "paperclip", "~> 2.3"
 gem 'mongrel', '1.1.5'
 gem 'capistrano', "2.5.21"
-gem 'rack', '1.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
