@@ -55,6 +55,7 @@ img {
 }
 
 .article {
+	color: #000;
 	display: block;
 	width: 660px;
 	padding: 0 10px 0 9px;
