@@ -1,7 +1,7 @@
 <div id="articles">
 	<% count = 1 %>
 	<% for article in @articles %>
-		<a target="_blank" class="article" href="<%= article.link %>">
+		<a target="_blank" class="article" href="<%= article.link %>"  id="<%= article.position %>">
 			<div class="article_banner no<%= count %>"><%= count %></div>
 			<h2><%= article.title %></h2>
 			<% if count == 1 %>
