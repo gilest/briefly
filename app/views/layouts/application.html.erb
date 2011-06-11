@@ -7,7 +7,6 @@
 		<title>Briefly - Admin</title>
 	<% end %>
 	<%= stylesheet_link_tag 'briefly' %>
-	<%= javascript_include_tag 'application' %>
 	<%= javascript_include_tag 'jquery.min' %>
 	<%= javascript_include_tag 'jquery_ujs' %>
 	<%= javascript_include_tag 'supersleight.plugin' %>
@@ -18,13 +17,6 @@
 		    $('body').supersleight();
 			}
 		);
-	</script>
-	<%= javascript_include_tag 'jquery.shortkeys' %>
-	<script type="text/javascript">
-		$(document).shortkeys({
-		  'j':       function () { moveDown(); },
-			'k':       function () { moveUp(); }
-		});
 	</script>
 	<%= yield(:head) %>
 	<%= csrf_meta_tag %>
