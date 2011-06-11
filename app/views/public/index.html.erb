@@ -1,3 +1,13 @@
+<% content_for(:head) do %>
+	<%= javascript_include_tag 'application' %>
+	<%= javascript_include_tag 'jquery.shortkeys' %>
+	<script type="text/javascript">
+		$(document).shortkeys({
+		  'j':       function () { moveDown(); },
+			'k':       function () { moveUp(); }
+		});
+	</script>
+<% end %>
 <div id="articles">
 	<% count = 1 %>
 	<% for article in @articles %>
