@@ -55,7 +55,7 @@ GEM
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
-    mysql2 (0.3.7)
+    mysql2 (0.2.7)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -101,7 +101,7 @@ DEPENDENCIES
   capistrano (= 2.5.21)
   jquery-rails
   mongrel (= 1.2.0.pre2)
-  mysql2
+  mysql2 (= 0.2.7)
   paperclip (~> 2.3)
   rack (= 1.2.1)
   rails (= 3.0.5)
