@@ -1,5 +1,5 @@
 require 'bundler/capistrano'
-set :user, 'briefly' # Your dreamhost account's username
+set :user, 'briefly2' # Your dreamhost account's username
 set :domain, 'briefly.co.nz' # Dreamhost servername where your account is located
 set :application, 'briefly.co.nz' # Your app's location (domain or sub-domain name as setup in panel)
 set :applicationdir, "/home/#{user}/#{application}" # The standard Dreamhost setup
