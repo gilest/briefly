@@ -1,8 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.2.8'
 gem "paperclip", "~> 2.3"
-gem 'capistrano', "2.5.21"
 gem "jquery-rails"
 gem 'mongrel', '1.2.0.pre2'
 gem 'rack', '1.2.1'
@@ -11,12 +10,13 @@ gem 'rack', '1.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '0.2.7'
+gem 'pg'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
