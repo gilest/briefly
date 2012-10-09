@@ -52,6 +52,8 @@ group :development do
 
   gem 'pry-rails'
   gem 'rails-sh', require: false
+  
+  gem 'thin'
 
 end
 
