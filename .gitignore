@@ -22,3 +22,4 @@ db/structure.sql
 .sass-cache
 zeus.json
 .zeus.sock
+vendor/cache/
