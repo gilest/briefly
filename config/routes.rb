@@ -1,4 +1,4 @@
-Huffpost::Application.routes.draw do
+Briefly::Application.routes.draw do
   
   match "admin" => 'private#index', :as => "articles"
   match "admin/create" => 'private#create', :as => "create_article"
