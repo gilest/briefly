@@ -4,11 +4,11 @@ class PrivateController < ApplicationController
   
   def index
     @article = Article.new
-    @articles = Article.order("`position` asc")
+    @articles = Article.order("position asc")
   end
   
   def create
-    @articles = Article.order("`position` asc")
+    @articles = Article.order("position asc")
     @article = Article.new(params[:article])
     if @article.save
       reorder_articles
