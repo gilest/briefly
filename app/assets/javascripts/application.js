@@ -1,4 +1,4 @@
-//= require jquery
+//= require jquery.min
 //= require jquery_ujs
 //= require jquery.Jcrop.min
 //= require jquery.shortkeys
