@@ -1,15 +1,15 @@
 Briefly::Application.routes.draw do
   
-  get "admin" => 'private#index', :as => "articles"
-  get "admin/create" => 'private#create', :as => "create_article"
-  get "admin/crop/:id" => 'private#crop', :as => "crop_article"
-  get "admin/update/:id" => 'private#update', :as => "update_article"
-  get "admin/edit/:id" => 'private#edit', :as => "edit_article"
-  get "admin/destroy/:id" => 'private#destroy', :as => "destroy_article"
-  get "admin/up/:id" => 'private#up', :as => "up_article"
-  get "admin/down/:id" => 'private#down', :as => "down_article"
+  get 'admin' => 'private#index', :as => 'articles'
+  post 'admin/create' => 'private#create', :as => 'create_article'
+  get 'admin/crop/:id' => 'private#crop', :as => 'crop_article'
+  patch 'admin/update/:id' => 'private#update', :as => 'update_article'
+  get 'admin/edit/:id' => 'private#edit', :as => 'edit_article'
+  get 'admin/destroy/:id' => 'private#destroy', :as => 'destroy_article'
+  get 'admin/up/:id' => 'private#up', :as => 'up_article'
+  get 'admin/down/:id' => 'private#down', :as => 'down_article'
   
-  root :to => "public#index", :as => "index"
+  root to: 'public#index', as: 'index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -58,11 +58,11 @@ Briefly::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  # root :to => 'welcome#index'
 
-  # See how all your routes lay out with "rake routes"
+  # See how all your routes lay out with 'rake routes'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.

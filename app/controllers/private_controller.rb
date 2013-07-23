@@ -9,7 +9,7 @@ class PrivateController < ApplicationController
   
   def create
     @articles = Article.order("position asc")
-    @article = Article.new(params[:article])
+    @article = Article.new(article_params)
     if @article.save
       reorder_articles
       redirect_to crop_article_path(@article), :notice => "Article created"
@@ -28,7 +28,7 @@ class PrivateController < ApplicationController
   
   def update
     @article = Article.find(params[:id])
-    if @article.update_attributes(params[:article])
+    if @article.update_attributes(article_params)
       if params[:article][:image].blank?
         redirect_to articles_path, :notice => "Article updated"
       else
@@ -121,6 +121,10 @@ class PrivateController < ApplicationController
       article.update_attributes(:position => count)
       count = count + 1
     end
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h)
   end
 
 end
