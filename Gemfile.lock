@@ -215,6 +215,7 @@ DEPENDENCIES
   immigrant
   jquery-rails
   paperclip
+  pry
   pry-rails
   rails (= 4.0.0)
   rails-sh
