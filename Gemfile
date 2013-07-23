@@ -15,6 +15,8 @@ gem 'unicorn'
 gem 'capistrano'
 gem 'capistrano_colors'
 
+gem 'pry'
+
 group :development do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git', ref: 'bef0c494956e516540b7a9e72fa03be6576031dd'
   gem 'immigrant'

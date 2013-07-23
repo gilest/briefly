@@ -8,9 +8,6 @@
 	<% end %>
   <%= stylesheet_link_tag  "application" %>
   <%= javascript_include_tag   "application" %>
-	<%#= javascript_include_tag 'jquery.min' %>
-	<%#= javascript_include_tag 'jquery_ujs' %>
-	<%#= javascript_include_tag 'supersleight.plugin' %>
  	<script type="text/javascript">
 		$(document).ready(
 			function() 
@@ -22,7 +19,7 @@
 	<%= yield(:head) %>
 	<%= csrf_meta_tag %>
 	<meta name="description" content="Everything you need to know and nothing you don't." />
-	<link rel="shortcut icon" href="/images/favicon.png" />
+	<link rel="shortcut icon" href="/assets/favicon.png" />
 	<% unless params[:controller] == "private" %>
 		<script type="text/javascript">
 	

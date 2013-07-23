@@ -34,6 +34,9 @@ class PrivateController < ApplicationController
       else
        redirect_to crop_article_path(@article)
       end
+      if(!@article.crop_x.blank? && !@article.crop_y.blank? && !@article.crop_w.blank? &&  !@article.crop_h.blank?)
+         @article.image.reprocess! 
+      end
     else
       render :action => :edit
     end
@@ -124,7 +127,7 @@ class PrivateController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h)
+    params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h, :updated_at, :image_updated_at, :image_file_name)
   end
 
 end
