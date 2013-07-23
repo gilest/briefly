@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 
+gem 'sqlite3', '~> 1.3.7'
+
 gem 'paperclip'
 # gem 'mini_magick'
 # gem 'carrierwave'

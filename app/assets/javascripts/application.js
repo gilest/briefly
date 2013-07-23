@@ -1,3 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.Jcrop.min
+//= require jquery.shortkeys
+//= require supersleight.plugin
+//= require keyboard_navigation
