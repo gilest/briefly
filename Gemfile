@@ -21,6 +21,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano_colors'
   gem 'rvm-capistrano', '~> 1.3.0'
+  gem 'capistrano-unicorn', require: false
 end
 
 

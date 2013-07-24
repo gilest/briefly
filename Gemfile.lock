@@ -34,6 +34,8 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-unicorn (0.1.9)
+      capistrano
     capistrano_colors (0.5.5)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -173,6 +175,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
+  capistrano-unicorn
   capistrano_colors
   capybara
   coffee-rails (~> 4.0.0)

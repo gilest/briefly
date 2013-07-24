@@ -17,10 +17,13 @@ server 'briefly.co.nz', :app, :web, :db, :primary => true
 after 'deploy:create_symlink', 'db:migrate'
 before 'deploy:restart', 'deploy:symlink_uploads'
 after 'deploy:restart', 'deploy:cleanup'
+after 'deploy:restart', 'unicorn:restart'
 
 require 'rvm/capistrano'
 require 'bundler/capistrano'
-set :bundle_flags, '--deployment'
+require 'capistrano-unicorn'
+
+set :bundle_flags, '--deployment --binstubs'
 
 # symlinks the uploads directory to the shared uploads dir so that we don't lose files each deploy
 namespace :deploy do
