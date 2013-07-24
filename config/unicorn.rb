@@ -5,7 +5,7 @@ app_path = "/Users/giles/sites/briefly/current"
 worker_processes 1
 preload_app true
 timeout 180
-listen "127.0.0.1:80"
+listen "tmp/sockets/unicorn.sock", :backlog => 64
 
 # Spawn unicorn master worker for user apps (group: apps)
 user 'giles', 'staff' 
