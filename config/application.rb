@@ -29,13 +29,6 @@ module Briefly
     # after migrating to Rails 4, we can safely remove this line
     config.active_record.schema_format = :sql
 
-    # Activate observers that should always be running.
-    observer_list = Dir[Rails.root.join("app/models/**/*_observer.rb")].map do |observer|
-      File.basename(observer).chomp('.rb').to_sym
-    end
-
-    config.active_record.observers = observer_list
-
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Auckland'

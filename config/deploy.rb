@@ -6,7 +6,7 @@ set :use_sudo, false
 set :repository, 'git@github.com:gilest/briefly.git'
 
 set :deploy_via, :copy
-set :deploy_to, "~/sites/briefly"
+set :deploy_to, "/Users/giles/sites/briefly"
 set :copy_exclude, '.git/*'
 set :copy_cache, '/tmp/deploy-caches/briefly'
 set :keep_releases, 7
