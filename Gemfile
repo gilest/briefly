@@ -14,6 +14,7 @@ gem 'unicorn'
 
 gem 'capistrano'
 gem 'capistrano_colors'
+gem 'rvm-capistrano', '~> 1.3.0'
 
 gem 'pry'
 
