@@ -17,7 +17,7 @@ server 'briefly.co.nz', :app, :web, :db, :primary => true
 after 'deploy:create_symlink', 'db:migrate'
 before 'deploy:restart', 'deploy:symlink_uploads'
 after 'deploy:restart', 'deploy:cleanup'
-after 'deploy:restart', 'unicorn:restart'
+after 'deploy:restart', 'unicorn:reload'
 
 require 'rvm/capistrano'
 require 'bundler/capistrano'
