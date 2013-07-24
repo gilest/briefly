@@ -1,6 +1,6 @@
 Briefly::Application.routes.draw do
   
-  get 'admin', controller: 'private' action: 'index', as: 'articles'
+  get 'admin', controller: 'private', action: 'index', as: 'articles'
   post 'admin/create', controller: 'private', action: 'create', as: 'create_article'
   get 'admin/crop/:id', controller: 'private', action: 'crop', as: 'crop_article'
   patch 'admin/update/:id', controller: 'private', action: 'update', as: 'update_article'
