@@ -24,3 +24,5 @@ db/structure.sql
 zeus.json
 .zeus.sock
 vendor/cache/
+.ruby-gemset
+.ruby-version
