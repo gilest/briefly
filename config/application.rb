@@ -2,12 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
+Bundler.require(:default, Rails.env)
 
 module Briefly
   class Application < Rails::Application
@@ -28,13 +23,6 @@ module Briefly
     # a low-level dump of the schema, which is necessary for the test db to create an hstore.
     # after migrating to Rails 4, we can safely remove this line
     config.active_record.schema_format = :sql
-
-    # Activate observers that should always be running.
-    observer_list = Dir[Rails.root.join("app/models/**/*_observer.rb")].map do |observer|
-      File.basename(observer).chomp('.rb').to_sym
-    end
-
-    config.active_record.observers = observer_list
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -58,13 +46,6 @@ module Briefly
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    # 404 catch all route
-    # currently Rails won't allow you to rescue from a RoutingError, see http://techoctave.com/c7/posts/36-rails-3-0-rescue-from-routing-error-solution
-    # solution offered here is from http://stackoverflow.com/questions/9794406/rails-3-2-error-routing-issue-error-id-is-conflicting-with-other-object-id
-    config.after_initialize do |app|
-      app.routes.append { match '*a', :to => 'application#render_404' } unless config.consider_all_requests_local
-    end
 
   end
 end
