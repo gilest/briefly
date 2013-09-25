@@ -21,3 +21,4 @@ zeus.json
 vendor/cache/
 .ruby-gemset
 .ruby-version
+vendor/cache/
