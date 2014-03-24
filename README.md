@@ -1,3 +1,3 @@
 # Briefly
 
-Briefly is a platform which displays the most important issues of the day. Today, tomorrow and everyday.
+Fast news for short attention spans from New Zealand and the world.
