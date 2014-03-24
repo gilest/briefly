@@ -7,7 +7,7 @@
 			<% if count == 1 %>
 				<div class="button"></div>
 			<% end %>
-			<img src="<%= article.image(:banner) %>" alt="<%= article.title %>" />
+			<img src="<%= article.image.banner %>" alt="<%= article.title %>" />
 			<div class="article_text"><%= article.text %></div>
 		</a>
 		<div class="admin_controls"><%= article.position.to_s %> | <%= link_to 'Up', up_article_path(article.id) %> | <%= link_to 'Down', down_article_path(article.id) %> | <%= link_to 'Crop', crop_article_path(article.id) %>| <%= link_to 'Edit', edit_article_path(article.id) %> | <%= link_to 'Delete', destroy_article_path(article.id) %></div>

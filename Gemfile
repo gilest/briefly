@@ -8,16 +8,21 @@ gem 'uglifier', '>= 1.0.3'
 
 gem 'sqlite3', '~> 1.3.9'
 
-gem 'paperclip'
-# gem 'mini_magick'
-# gem 'carrierwave'
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 3.7.0'
 
 gem 'jquery-rails', '~> 3.0.4'
 
 group :development do
-  gem 'pry-rails'
   gem 'rails-sh', require: false
-  gem 'thin'
+  gem 'thin', '~> 1.6.2' 
+
+  # for model annotation
+  gem 'annotate', '~> 2.5.0'
+
+  # for prettier errors
+  gem 'better_errors', '~> 0.8.0'
+  gem 'binding_of_caller', '~> 0.7.1'
 end
 
 group :development, :test do

@@ -16,7 +16,7 @@
 		<div class="field">
 	    <%= f.text_field :title %>
 	  </div>
-		<div class="field_image" style="background: url('<%= @article.image(:banner) %>')">
+		<div class="field_image" style="background: url('<%= @article.image.banner %>')">
 	    <div class="upload_wrap"><%= f.file_field :image %></div>
 	  </div>
 		<div class="field_text">

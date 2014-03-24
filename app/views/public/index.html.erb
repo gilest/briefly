@@ -17,7 +17,7 @@
 			<% if count == 1 %>
 				<div class="button"></div>
 			<% end %>
-			<img src="<%= article.image(:banner) %>" alt="<%= article.title %>" />
+			<img src="<%= article.image.banner %>" alt="<%= article.title %>" />
 			<div class="article_text"><%= article.text %></div>
 		</a>
 		<% count = count + 1 %>

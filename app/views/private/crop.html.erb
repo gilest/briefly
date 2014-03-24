@@ -11,7 +11,7 @@
 		function update_crop(coords) {
 		  var rx = 661/coords.w;
 		  var ry = 240/coords.h;
-		  var ratio = <%= @article.avatar_geometry(:original).width %> / 661;
+		  var ratio = <%= @article.image.geometry[:width] %> / 661;
 		  $("#crop_x").val(Math.round(coords.x * ratio));
 		  $("#crop_y").val(Math.round(coords.y * ratio));
 		  $("#crop_w").val(Math.round(coords.w * ratio));
@@ -20,11 +20,11 @@
 	</script>
 <% end %>
 
-<%= image_tag @article.image(:original), :id => "cropbox", :width => '661' %>
+<%= image_tag @article.image, id: "cropbox", width: '661' %>
 <div id="crop_form">
-	<%= form_for(@article, :url => update_article_path) do |f| %>
+	<%= form_for(@article, url: update_article_path) do |f| %>
 	  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-	    <%= f.hidden_field attribute, :id => attribute %>
+	    <%= f.hidden_field attribute, id: attribute %>
 	  <% end %>
 	  <%= f.submit "Crop" %>
 	<% end %>
