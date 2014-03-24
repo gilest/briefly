@@ -15,19 +15,19 @@
     <div class="edit_article_form">
       <div class="article_banner no1"></div>
       <div class="field">
-        <%= f.text_field :title, value: '' %>
+        <%= f.text_field :title %>
       </div>
-      <div class="field_image">
+      <div class="field_image" style="background: url('<%= @article.image.banner %>')">
         <div class="upload_wrap"><%= f.file_field :image %></div>
       </div>
       <div class="field_text">
-        <%= f.text_area :text, value: '' %>
+        <%= f.text_area :text %>
       </div>
       <div class="field_link">
-        <%= f.text_field :link, value: '' %>
+        <%= f.text_field :link %>
       </div>
       <div class="actions_submit">
-        <%= f.hidden_field :position, value: Article.next_position %>
+        <%= f.hidden_field :position, value: @article.new_record? ? Article.next_position : @article.position %>
         <%= f.submit %>
       </div>
     </div>

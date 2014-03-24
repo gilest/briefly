@@ -37,4 +37,14 @@ class Article < ActiveRecord::Base
     articles.empty? ? 1 : articles.first.position - 1
   end
 
+  def self.reorder!
+    # reassigns incrementing position integers
+    articles_for_ordering = Article.by_position
+    count = 1
+    for article in articles_for_ordering
+      article.update_attributes(position: count)
+      count = count + 1
+    end
+  end
+
 end

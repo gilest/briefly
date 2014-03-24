@@ -1,6 +1,6 @@
 Briefly::Application.routes.draw do
 
-  resources :articles, except: [:show] do
+  resources :articles, path: '', except: [:show] do
     get 'crop', as: 'crop'
     get 'up', as: 'up'
     get 'down', as: 'down'

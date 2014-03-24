@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     @articles = Article.by_position
     @article = Article.new(article_params)
     if @article.save
-      reorder_articles
+      Article.reorder!
       redirect_to article_crop_path(@article), notice: "Article created"
     else
       render action: "index", anchor: 'error_explanation'
@@ -60,7 +60,7 @@ class ArticlesController < ApplicationController
       @above.update_attributes(position: below)
       @article.update_attributes(position: above)
       
-      reorder_articles
+      Article.reorder!
       
       redirect_to articles_path(anchor: @article.position), notice: "Article moved up"
     else
@@ -90,7 +90,7 @@ class ArticlesController < ApplicationController
       @article.update_attributes(position: below)
       
       
-      reorder_articles
+      Article.reorder!
       
       redirect_to articles_path(anchor: @article.position), notice: "Article moved down"
     else
@@ -101,21 +101,11 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    reorder_articles
+    Article.reorder!
     redirect_to articles_path, notice: "Article destroyed"
   end
   
   protected
-  
-  def reorder_articles
-    # reassigns incrementing position integers
-    @articles_for_ordering = Article.by_position
-    count = 1
-    for article in @articles_for_ordering
-      article.update_attributes(position: count)
-      count = count + 1
-    end
-  end
 
   def article_params
     params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h, :updated_at, :image)
