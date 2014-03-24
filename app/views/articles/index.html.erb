@@ -2,4 +2,4 @@
   <%= render @articles %>
 </div>
 
-<%= render 'form' %>
+<%= render 'form' if admin? %>

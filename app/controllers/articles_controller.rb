@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   
-  before_filter :authenticate, except: [:index]
+  before_filter :authenticate!, except: [:index]
   
   def index
     @article = Article.new
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
   end
   
   def up
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:article_id])
     @articles = Article.order("position desc").all
     unless @article.position == @articles.last.position
       above_is_next = 0
@@ -69,7 +69,7 @@ class ArticlesController < ApplicationController
   end
   
   def down
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:article_id])
     @articles = Article.by_position.all
     unless @article.position == @articles.last.position
       below_is_next = 0
@@ -106,12 +106,6 @@ class ArticlesController < ApplicationController
   end
   
   protected
-
-  def authenticate
-    authenticate_or_request_with_http_basic do |user_name, password|
-      user_name == "George" && password == "babelfish"
-    end
-  end
   
   def reorder_articles
     # reassigns incrementing position integers
