@@ -1,0 +1,17 @@
+<a target="_blank" class="article" href="<%= article.link %>"  id="<%= article.position %>">
+  <div class="article_banner no<%= article.current_position %>"><%= article.current_position %></div>
+  <h2><%= article.title %></h2>
+  <% if article.current_position == 1 %>
+    <div class="button"></div>
+  <% end %>
+  <img src="<%= article.image.banner %>" alt="<%= article.title %>" />
+  <div class="article_text"><%= article.text %></div>
+</a>
+<div class="admin_controls">
+  <%= article.position.to_s %> | 
+  <%= link_to 'Up', article_up_path(article) %> | 
+  <%= link_to 'Down', article_down_path(article) %> | 
+  <%= link_to 'Crop', article_crop_path(article) %>| 
+  <%= link_to 'Edit', edit_article_path(article) %> | 
+  <%= link_to 'Delete', article_path(article), method: :delete, confirm: 'Are you sure?' %>
+</div>

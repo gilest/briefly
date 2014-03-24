@@ -1,20 +1,20 @@
-class PrivateController < ApplicationController
+class ArticlesController < ApplicationController
   
-  before_filter :authenticate
+  before_filter :authenticate, except: [:index]
   
   def index
     @article = Article.new
-    @articles = Article.order("position asc")
+    @articles = Article.by_position
   end
   
   def create
-    @articles = Article.order("position asc")
+    @articles = Article.by_position
     @article = Article.new(article_params)
     if @article.save
       reorder_articles
-      redirect_to crop_article_path(@article), :notice => "Article created"
+      redirect_to article_crop_path(@article), notice: "Article created"
     else
-      render :action => "index", :anchor => 'error_explanation'
+      render action: "index", anchor: 'error_explanation'
     end
   end
 
@@ -23,19 +23,19 @@ class PrivateController < ApplicationController
   end
   
   def crop
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:article_id])
   end
   
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(article_params)
       if params[:article][:image].blank?
-        redirect_to articles_path, :notice => "Article updated"
+        redirect_to articles_path, notice: "Article updated"
       else
-       redirect_to crop_article_path(@article)
+       redirect_to article_crop_path(@article)
       end
     else
-      render :action => :edit
+      render action: :edit
     end
   end
   
@@ -57,20 +57,20 @@ class PrivateController < ApplicationController
       above = @above.position
       below = @article.position
       
-      @above.update_attributes(:position => below)
-      @article.update_attributes(:position => above)
+      @above.update_attributes(position: below)
+      @article.update_attributes(position: above)
       
       reorder_articles
       
-      redirect_to articles_path(:anchor => @article.position), :notice => "Article moved up"
+      redirect_to articles_path(anchor: @article.position), notice: "Article moved up"
     else
-      redirect_to articles_path(:anchor => @article.position), :notice => "Article already first"
+      redirect_to articles_path(anchor: @article.position), notice: "Article already first"
     end
   end
   
   def down
     @article = Article.find(params[:id])
-    @articles = Article.order("position asc").all
+    @articles = Article.by_position.all
     unless @article.position == @articles.last.position
       below_is_next = 0
       for article in @articles
@@ -86,15 +86,15 @@ class PrivateController < ApplicationController
       below = @below.position
       above = @article.position
       
-      @below.update_attributes(:position => above)
-      @article.update_attributes(:position => below)
+      @below.update_attributes(position: above)
+      @article.update_attributes(position: below)
       
       
       reorder_articles
       
-      redirect_to articles_path(:anchor => @article.position), :notice => "Article moved down"
+      redirect_to articles_path(anchor: @article.position), notice: "Article moved down"
     else
-      redirect_to articles_path(:anchor => @article.position), :notice => "Article already last"
+      redirect_to articles_path(anchor: @article.position), notice: "Article already last"
     end
   end
   
@@ -102,7 +102,7 @@ class PrivateController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
     reorder_articles
-    redirect_to articles_path, :notice => "Article destroyed"
+    redirect_to articles_path, notice: "Article destroyed"
   end
   
   protected
@@ -115,10 +115,10 @@ class PrivateController < ApplicationController
   
   def reorder_articles
     # reassigns incrementing position integers
-    @articles_for_ordering = Article.order("position asc").all
+    @articles_for_ordering = Article.by_position
     count = 1
     for article in @articles_for_ordering
-      article.update_attributes(:position => count)
+      article.update_attributes(position: count)
       count = count + 1
     end
   end

@@ -1,0 +1,35 @@
+<div id="article_form">
+  <%= form_for(@article, html: { multipart: true }) do |f| %>
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> bitch</h2>
+
+        <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="edit_article_form">
+      <div class="article_banner no1"></div>
+      <div class="field">
+        <%= f.text_field :title, value: '' %>
+      </div>
+      <div class="field_image">
+        <div class="upload_wrap"><%= f.file_field :image %></div>
+      </div>
+      <div class="field_text">
+        <%= f.text_area :text, value: '' %>
+      </div>
+      <div class="field_link">
+        <%= f.text_field :link, value: '' %>
+      </div>
+      <div class="actions_submit">
+        <%= f.hidden_field :position, value: Article.next_position %>
+        <%= f.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -17,13 +17,24 @@ class Article < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
-  # has_attached_file :image, :styles => { :banner => "661x240#" }, :processors => [:cropper]
   mount_uploader :image, ImageUploader
 
   after_update :crop_image
 
+  scope :by_position, -> { order('position asc, id desc') }
+
   def crop_image
     image.recreate_versions! if crop_x.present?
+  end
+
+  def current_position
+    hash = Hash[Article.by_position.map.with_index.to_a]
+    hash[self] + 1
+  end
+
+  def self.next_position
+    articles = Article.by_position
+    articles.empty? ? 1 : articles.first.position - 1
   end
 
 end
