@@ -1,23 +1,43 @@
 window.nav = {}
-nav.currentFocusInt = 0
+nav.currentFocusInt = 1
+nav.enabled = true
 
 nav.moveUp = ->
-  nav.currentFocusInt--
-  nav.currentFocusInt = 1 if nav.currentFocusInt < 1
-  $("#" + nav.currentFocusInt).focus()
+  if nav.enabled
+    nav.currentFocusInt--
+    nav.currentFocusInt = 1 if nav.currentFocusInt < 1
+    $("#" + nav.currentFocusInt).focus()
   return
 
 nav.moveDown = ->
-  numberArticlesInt = $(".article").length
-  nav.currentFocusInt++
-  nav.currentFocusInt = numberArticlesInt if nav.currentFocusInt > numberArticlesInt
-  $("#" + nav.currentFocusInt).focus()
+  if nav.enabled
+    numberArticlesInt = $(".article").length
+    nav.currentFocusInt++
+    nav.currentFocusInt = numberArticlesInt if nav.currentFocusInt > numberArticlesInt
+    $("#" + nav.currentFocusInt).focus()
   return
-
 
 ready = ->
 
   if $('.article').length
+
+    $('#article_title').focus ->
+      nav.enabled = false
+
+    $('#article_title').blur ->
+      nav.enabled = true
+
+    $('#article_text').focus ->
+      nav.enabled = false
+
+    $('#article_text').blur ->
+      nav.enabled = true
+
+    $('#article_link').focus ->
+      nav.enabled = false
+
+    $('#article_link').blur ->
+      nav.enabled = true
 
     $(document).keyup (event) ->
 
