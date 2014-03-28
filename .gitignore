@@ -22,4 +22,4 @@ vendor/cache/
 .ruby-gemset
 .ruby-version
 vendor/cache/
-public/uploads/*
+public/uploads/**
