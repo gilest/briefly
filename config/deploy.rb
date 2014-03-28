@@ -28,9 +28,7 @@ namespace :db do
   end
   task :symlink do
     on roles(:db) do
-      within release_path do
-        execute "ln -sf #{shared_path}/production.sqlite3 db/production.sqlite3"
-      end
+      execute "ln -sf #{shared_path}/production.sqlite3 #{release_path}/db/production.sqlite3"
     end
   end
 end

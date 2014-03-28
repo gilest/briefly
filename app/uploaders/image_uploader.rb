@@ -4,11 +4,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
-  if Rails.env.production?
-    storage :fog
-  else
+  # if Rails.env.production?
+  #   storage :fog
+  # else
     storage :file
-  end
+  # end
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{model.id}"
