@@ -34,6 +34,14 @@ namespace :db do
   end
 end
 
+namespace :images do
+  task :download do
+    on roles(:app) do
+      download! "#{deploy_to}/shared/public/uploads", 'public', recursive: true
+    end
+  end
+end
+
 namespace :nginx do
   task :start do
     on roles(:web) do

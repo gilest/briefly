@@ -1,3 +1,6 @@
+html, body
+  height: 100%
+
 body
   background: asset-url('bg.jpg')
   margin: 0
@@ -6,6 +9,13 @@ body
 h1, h2, p
   margin: 0
   font-family: Georgia, sans-serif
+  color: #424242
+
+h2, p
+  margin-bottom: 20px
+  text-shadow: 1px 1px 0px #ffffff
+  filter: dropshadow(color = white, offx = 1, offy = 1)
+
 
 h1 a, h2 a
   color: black
@@ -18,6 +28,7 @@ img
   background: asset-url('main_wrap_bg.jpg')
   width: 835px
   margin: 0 auto
+  min-height: 100%
 
 #main
   background: asset-url('checker.jpg') no-repeat top center
@@ -94,6 +105,7 @@ img
     margin: 17px 0 32px 0
     text-align: center
     color: white
+    text-shadow: none
   img
     width: 661px
     height: 240px
@@ -224,7 +236,10 @@ img
   padding: 10px
 
 .no1
-  padding-left: 1px
+  padding-left: 0px
+
+.no2
+  padding-left: 0px
 
 .no4
   padding-left: 0px
@@ -247,3 +262,19 @@ img
 #crop_form input[type='submit']
   margin-top: 20px
   width: 661px
+
+.admin_banner
+  background: rgba(255, 255, 255, 0.4)
+  position: fixed
+  right: 0
+  bottom: 0
+  text-align: right
+  padding: 0px 9px
+  height: 35px
+  line-height: 35px
+  border-top: 1px solid #DBC6A1
+  border-left: 1px solid #DBC6A1
+  input
+    width: 65px
+  input[type='submit']
+    width: 50px

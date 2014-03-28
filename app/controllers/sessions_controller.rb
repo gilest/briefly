@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
 
-  def new
-  end
-
   def create
     if credentials[params[:login]] && BCrypt::Password.new(credentials[params[:login]]) == params[:password]
       session[:admin] = params[:login]
