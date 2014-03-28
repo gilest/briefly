@@ -4,14 +4,6 @@
 	<title>Briefly - Fast news for short attention spans</title>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
- 	<script type="text/javascript">
-		$(document).ready(
-			function() 
-			{
-		    $('body').supersleight();
-			}
-		);
-	</script>
 	<%= yield(:head) %>
 	<%= csrf_meta_tag %>
 	<meta name="description" content="Everything you need to know and nothing you don't." />
