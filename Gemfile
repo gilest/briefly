@@ -6,6 +6,8 @@ gem 'sass-rails',   '~> 4.0.2'
 gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier', '>= 1.0.3'
 
+gem 'therubyracer', platforms: :ruby
+
 gem 'sqlite3', '~> 1.3.9'
 
 gem 'carrierwave', '~> 0.10.0'
@@ -23,6 +25,11 @@ group :development do
   # for prettier errors
   gem 'better_errors', '~> 0.8.0'
   gem 'binding_of_caller', '~> 0.7.1'
+
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano3-unicorn', '~> 0.1.1'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1'
 end
 
 group :development, :test do

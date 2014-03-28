@@ -1,14 +1,15 @@
+deploy_path = "/home/web/briefly"
 # Set your full path to application.
-app_path = "/Users/giles/sites/briefly/current"
+app_path = "#{deploy_path}/current"
 
 # Set unicorn options
 worker_processes 1
 preload_app true
-timeout 180
-listen "/Users/giles/sites/briefly/shared/sockets/unicorn.sock", :backlog => 64
+timeout 20
+# listen 80
+listen "#{app_path}/tmp/sockets/unicorn.sock", :backlog => 64
 
-# Spawn unicorn master worker for user apps (group: apps)
-user 'giles', 'staff' 
+user 'web', 'web'
 
 # Fill path to your app
 working_directory app_path
@@ -17,8 +18,8 @@ working_directory app_path
 rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Log everything to one file
-stderr_path "log/unicorn.log"
-stdout_path "log/unicorn.log"
+stderr_path "#{app_path}/log/unicorn.log"
+stdout_path "#{app_path}/log/unicorn.log"
 
 # Set master PID location
 pid "#{app_path}/tmp/pids/unicorn.pid"

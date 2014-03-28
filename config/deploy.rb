@@ -1,79 +1,66 @@
-# defaults setup, stage specific overrides are set in config/staging.rb and config/production.rb
-set :application, 'gloryleague'
-set :user, 'giles'
-set :use_sudo, false
+# config valid only for Capistrano 3.1
+lock '3.1.0'
 
-set :repository, 'git@github.com:gilest/briefly.git'
+set :application, 'briefly'
+set :repo_url, 'git@github.com:gilest/briefly.git'
+set :stages, %w(production)
+set :default_stage, 'production'
 
-set :deploy_via, :copy
-set :deploy_to, "/Users/giles/sites/briefly"
-set :copy_exclude, '.git/*'
-set :copy_cache, '/tmp/deploy-caches/briefly'
-set :keep_releases, 7
-set :branch, fetch(:branch, 'master')
+set :deploy_to, '/home/web/briefly'
 
-server 'briefly.co.nz', :app, :web, :db, :primary => true
+set :unicorn_config_path, "#{release_path}/config/unicorn.rb"
 
-after 'deploy:create_symlink', 'db:migrate'
-before 'deploy:restart', 'deploy:symlink_uploads'
-after 'deploy:restart', 'deploy:cleanup'
-after 'deploy:restart', 'unicorn:reload'
+set :linked_dirs, fetch(:linked_dirs) + %w{log tmp/pids tmp/sockets tmp/cache public/uploads}
 
-require 'rvm/capistrano'
-require 'bundler/capistrano'
-require 'capistrano-unicorn'
-
-set :bundle_flags, '--deployment --binstubs'
-
-# symlinks the uploads directory to the shared uploads dir so that we don't lose files each deploy
-namespace :deploy do
-
-  desc 'Symlink uploads dir to shared path'
-  task :symlink_uploads do
-    run "mkdir -p #{shared_path}/uploads"
-    run "rm -rf #{latest_release}/public/system && ln -sf #{shared_path}/uploads #{latest_release}/public/system"
-  end
-
-end
-
-# namespace :nginx do
-
-#   desc 'Start nginx'
-#   task :start do
-#     run "#{sudo} service nginx start"
-#   end
-
-#   desc 'Stop nginx'
-#   task :stop do
-#     run "#{sudo} service nginx stop"
-#   end
-
-#   desc 'Restart nginx'
-#   task :restart do
-#     run "#{sudo} service nginx restart"
-#   end
-
-# end
+before 'deploy:migrate', 'db:symlink'
+after 'deploy:publishing', 'deploy:restart'
 
 namespace :db do
-
-  desc 'Run migrations'
-  task :migrate do
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake db:migrate --trace"
-  end
-
-end
-
-namespace :tail do
-
-  desc "Tail app log files" 
-  task :app, :roles => :app do
-    trap("INT") { puts 'Interupted'; exit 0; }
-    run "tail -f #{shared_path}/log/#{rails_env}.log" do |channel, stream, data|
-      puts  # for an extra line break before the host name
-      puts "#{channel[:host]}: #{data}" 
-      break if stream == :err
+  task :upload do
+    on roles(:db) do
+      upload! 'db/production.sqlite3', "#{deploy_to}/shared"
     end
   end
+  task :download do
+    on roles(:db) do
+      download! "#{deploy_to}/shared/production.sqlite3", 'db/production.sqlite3'
+    end
+  end
+  task :symlink do
+    on roles(:db) do
+      within release_path do
+        execute "ln -sf #{shared_path}/production.sqlite3 db/production.sqlite3"
+      end
+    end
+  end
+end
 
+namespace :nginx do
+  task :start do
+    on roles(:web) do
+      execute "sudo service nginx start"
+    end
+  end
+  task :stop do
+    on roles(:web) do
+      execute "sudo service nginx stop"
+    end
+  end
+  task :restart do
+    on roles(:web) do
+      execute "sudo service nginx restart"
+    end
+  end
+  task :symlink do
+    on roles(:web) do
+        execute "sudo ln -sf #{release_path}/config/#{application}.nginx.conf /etc/nginx/sites-enabled/#{application}.nginx.conf"
+    end
+  end
+end
+
+namespace :deploy do
+
+  task :restart do
+    invoke 'unicorn:restart'
+  end
 end
