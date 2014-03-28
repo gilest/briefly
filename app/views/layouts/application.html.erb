@@ -15,7 +15,7 @@
 	<%= yield(:head) %>
 	<%= csrf_meta_tag %>
 	<meta name="description" content="Everything you need to know and nothing you don't." />
-	<link rel="shortcut icon" href="/assets/favicon.png" />
+	<%= favicon_link_tag 'favicon.png' %>
 	<% unless admin? %>
 		<script type="text/javascript">
 	
