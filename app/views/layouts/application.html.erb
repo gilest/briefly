@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% unless params[:controller] == "private" %>
-		<title>Briefly - Fast news for short attention spans</title>
-	<% else %>
-		<title>Briefly - Admin</title>
-	<% end %>
-  <%= stylesheet_link_tag  "application" %>
-  <%= javascript_include_tag   "application" %>
+	<title>Briefly - Fast news for short attention spans</title>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
  	<script type="text/javascript">
 		$(document).ready(
 			function() 
@@ -20,7 +16,7 @@
 	<%= csrf_meta_tag %>
 	<meta name="description" content="Everything you need to know and nothing you don't." />
 	<link rel="shortcut icon" href="/assets/favicon.png" />
-	<% unless params[:controller] == "private" %>
+	<% unless admin? %>
 		<script type="text/javascript">
 	
 		  var _gaq = _gaq || [];

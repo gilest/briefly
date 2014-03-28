@@ -51,7 +51,9 @@ namespace :nginx do
   end
   task :symlink do
     on roles(:web) do
-        execute "sudo ln -sf #{release_path}/config/#{application}.nginx.conf /etc/nginx/sites-enabled/#{application}.nginx.conf"
+      within release_path do
+        execute "sudo ln -sf #{release_path}/config/#{fetch(:application)}.nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)}.nginx.conf"
+      end
     end
   end
 end
