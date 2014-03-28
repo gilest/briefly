@@ -5,6 +5,7 @@ set :application, 'briefly'
 set :repo_url, 'git@github.com:gilest/briefly.git'
 set :stages, %w(production)
 set :default_stage, 'production'
+set :rails_env, 'production'
 
 set :deploy_to, '/home/web/briefly'
 
@@ -56,6 +57,16 @@ namespace :nginx do
       end
     end
   end
+end
+
+namespace :tail do
+ 
+  task :app do
+    on roles(:app) do
+      execute "tail -f #{shared_path}/log/#{fetch(:rails_env)}.log"
+    end
+  end
+
 end
 
 namespace :deploy do
