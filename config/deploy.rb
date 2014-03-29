@@ -12,57 +12,57 @@ set :deploy_to, '/home/web/briefly'
 set :unicorn_config_path, "#{release_path}/config/unicorn.rb"
 
 set :linked_dirs, fetch(:linked_dirs) + %w{log tmp/pids tmp/sockets tmp/cache public/uploads}
+set :linked_files, %w{config/credentials.yml db/production.sqlite3}
 
-before 'deploy:migrate', 'db:symlink'
+# ensure that the linked_files exist on the server for a deploy to succeed
+# use db:upload and credentials:upload to get set up
+
 after 'deploy:publishing', 'deploy:restart'
 
 namespace :db do
+
   task :upload do
     on roles(:db) do
-      upload! 'db/production.sqlite3', "#{deploy_to}/shared"
+      execute "mkdir -p #{deploy_to}/shared/db"
+      upload! 'db/production.sqlite3', "#{deploy_to}/shared/db"
     end
   end
   task :download do
     on roles(:db) do
-      download! "#{deploy_to}/shared/production.sqlite3", 'db/production.sqlite3'
+      download! "#{deploy_to}/shared/db/production.sqlite3", 'db/production.sqlite3'
     end
   end
-  task :symlink do
-    on roles(:db) do
-      execute "ln -sf #{shared_path}/production.sqlite3 #{release_path}/db/production.sqlite3"
-    end
-  end
+
 end
 
 namespace :credentials do
 
   task :upload do
     on roles(:app) do
-      upload! 'config/credentials.yml', "#{deploy_to}/shared"
+      execute "mkdir -p #{deploy_to}/shared/config"
+      upload! 'config/credentials.yml', "#{deploy_to}/shared/config"
     end
   end
   task :download do
     on roles(:app) do
-      download! "#{deploy_to}/shared/credentials.yml", 'config/credentials.yml'
-    end
-  end
-  task :symlink do
-    on roles(:app) do
-      execute "ln -sf #{shared_path}/credentials.yml #{release_path}/config/credentials.yml"
+      download! "#{deploy_to}/shared/config/credentials.yml", 'config/credentials.yml'
     end
   end
 
 end
 
 namespace :images do
+
   task :download do
     on roles(:app) do
       download! "#{deploy_to}/shared/public/uploads", 'public', recursive: true
     end
   end
+
 end
 
 namespace :nginx do
+
   task :start do
     on roles(:web) do
       execute "sudo service nginx start"
@@ -85,6 +85,7 @@ namespace :nginx do
       end
     end
   end
+
 end
 
 namespace :tail do
@@ -102,4 +103,5 @@ namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
   end
+
 end
