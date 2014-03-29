@@ -1,43 +1,38 @@
 window.nav = {}
-nav.currentFocusInt = 1
+nav.current_article = 1
 nav.enabled = true
 
-nav.moveUp = ->
+nav.up = ->
   if nav.enabled
-    nav.currentFocusInt--
-    nav.currentFocusInt = 1 if nav.currentFocusInt < 1
-    $("#" + nav.currentFocusInt).focus()
+    nav.current_article--
+    nav.current_article = 1 if nav.current_article < 1
+    $("#" + nav.current_article).focus()
   return
 
-nav.moveDown = ->
+nav.down = ->
   if nav.enabled
-    numberArticlesInt = $(".article").length
-    nav.currentFocusInt++
-    nav.currentFocusInt = numberArticlesInt if nav.currentFocusInt > numberArticlesInt
-    $("#" + nav.currentFocusInt).focus()
+    number_of_articles = $(".article").length
+    nav.current_article++
+    nav.current_article = number_of_articles if nav.current_article > number_of_articles
+    $("#" + nav.current_article).focus()
   return
 
 ready = ->
 
   if $('.article').length
 
-    $('#article_title').focus ->
-      nav.enabled = false
+    # css selectors for all user input fields
+    field_selectors = ['.user_field', '.password_field', '#article_title', '#article_text', '#article_link']
 
-    $('#article_title').blur ->
-      nav.enabled = true
+    $.each field_selectors, (index, selector) ->
 
-    $('#article_text').focus ->
-      nav.enabled = false
+      # disable keyboard navigation while fields have focus
 
-    $('#article_text').blur ->
-      nav.enabled = true
+      $(selector).focus ->
+        nav.enabled = false
 
-    $('#article_link').focus ->
-      nav.enabled = false
-
-    $('#article_link').blur ->
-      nav.enabled = true
+      $(selector).blur ->
+        nav.enabled = true
 
     $(document).keyup (event) ->
 
@@ -46,8 +41,8 @@ ready = ->
       # (j) and (k) for vim users
 
       switch event.which
-        when 74, 78, 70 then nav.moveDown() # j n, f
-        when 75, 80, 66 then nav.moveUp()   # k p, b
+        when 74, 78, 70 then nav.down() # j n, f
+        when 75, 80, 66 then nav.up()   # k p, b
 
 # turbolinks $(document).ready fix
 $(document).ready(ready)

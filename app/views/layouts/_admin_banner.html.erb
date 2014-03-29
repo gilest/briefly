@@ -4,8 +4,8 @@
     <%= link_to 'Sign out', destroy_session_path, method: :delete %>
   <% else %>
     <%= form_tag create_session_path, method: :post do -%>
-      <%= text_field_tag 'login' %>
-      <%= password_field_tag 'password', nil %>
+      <%= text_field_tag 'login', nil, class: 'user_field' %>
+      <%= password_field_tag 'password', nil, class: 'password_field' %>
       <%= submit_tag 'Sign in' %>
     <% end -%>
   <% end %>
