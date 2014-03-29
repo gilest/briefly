@@ -34,6 +34,26 @@ namespace :db do
   end
 end
 
+namespace :credentials do
+
+  task :upload do
+    on roles(:app) do
+      upload! 'config/credentials.yml', "#{deploy_to}/shared"
+    end
+  end
+  task :download do
+    on roles(:app) do
+      download! "#{deploy_to}/shared/credentials.yml", 'config/credentials.yml'
+    end
+  end
+  task :symlink do
+    on roles(:app) do
+      execute "ln -sf #{shared_path}/credentials.yml #{release_path}/config/credentials.yml"
+    end
+  end
+
+end
+
 namespace :images do
   task :download do
     on roles(:app) do
