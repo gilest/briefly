@@ -37,15 +37,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def geometry
-    if @file
-      dimensions = `identify #{@file.file}`.split( )[3].split('+').first
-      width = dimensions.split('x').first
-      height = dimensions.split('x').first
-      geometry = { width: width, height: height }
-    end
-  end
-
   def extension_white_list
     %w(jpg jpeg gif png)
   end
