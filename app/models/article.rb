@@ -20,6 +20,7 @@ class Article < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   after_update :crop_image
+  after_create :move_to_top
 
   acts_as_list
 
