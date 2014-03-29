@@ -19,6 +19,11 @@ set :linked_files, %w{config/credentials.yml db/production.sqlite3}
 
 after 'deploy:publishing', 'deploy:restart'
 
+task :pull do
+  invoke 'images:download'
+  invoke 'db:download'
+end
+
 namespace :db do
 
   task :upload do
@@ -28,6 +33,11 @@ namespace :db do
     end
   end
   task :download do
+    on roles(:db) do
+      download! "#{deploy_to}/shared/db/production.sqlite3", 'db/development.sqlite3'
+    end
+  end
+  task :download_to_production do
     on roles(:db) do
       download! "#{deploy_to}/shared/db/production.sqlite3", 'db/production.sqlite3'
     end
