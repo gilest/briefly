@@ -2,6 +2,10 @@
 
 Fast news for short attention spans from New Zealand and the world.
 
+![Preview](preview.jpg)
+
+You can [check it out here](http://briefly.co.nz).
+
 ## Editors
 
 Giles - Saturday/Sunday/Monday/Tuesday
