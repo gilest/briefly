@@ -1,14 +1,14 @@
 class ArticlesController < ApplicationController
-  
-  before_filter :authenticate!, except: [:index]
+
+  before_action :authenticate!, except: [:index]
+  before_action :load_articles, except: [:delete]
   
   def index
     @article = Article.new
-    @articles = Article.by_position
+    
   end
   
   def create
-    @articles = Article.by_position
     @article = Article.new(article_params)
     if @article.save
       Article.reorder!
@@ -41,27 +41,7 @@ class ArticlesController < ApplicationController
   
   def up
     @article = Article.find(params[:article_id])
-    @articles = Article.order("position desc").all
-    unless @article.position == @articles.last.position
-      above_is_next = 0
-      for article in @articles
-        if above_is_next == 1
-          @above = article
-          above_is_next = 0
-        end
-        if article.position == @article.position
-          above_is_next = 1
-        end
-      end
-      
-      above = @above.position
-      below = @article.position
-      
-      @above.update_attributes(position: below)
-      @article.update_attributes(position: above)
-      
-      Article.reorder!
-      
+    if @article.move!(:up)
       redirect_to articles_path(anchor: @article.position), notice: "Article moved up"
     else
       redirect_to articles_path(anchor: @article.position), notice: "Article already first"
@@ -70,28 +50,7 @@ class ArticlesController < ApplicationController
   
   def down
     @article = Article.find(params[:article_id])
-    @articles = Article.by_position.all
-    unless @article.position == @articles.last.position
-      below_is_next = 0
-      for article in @articles
-        if below_is_next == 1
-          @below = article
-          below_is_next = 0
-        end
-        if article.position == @article.position
-          below_is_next = 1
-        end
-      end
-      
-      below = @below.position
-      above = @article.position
-      
-      @below.update_attributes(position: above)
-      @article.update_attributes(position: below)
-      
-      
-      Article.reorder!
-      
+    if @article.move!(:down)
       redirect_to articles_path(anchor: @article.position), notice: "Article moved down"
     else
       redirect_to articles_path(anchor: @article.position), notice: "Article already last"
@@ -106,6 +65,10 @@ class ArticlesController < ApplicationController
   end
   
   protected
+
+  def load_articles
+    @articles = Article.by_position
+  end
 
   def article_params
     params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h, :updated_at, :image)
