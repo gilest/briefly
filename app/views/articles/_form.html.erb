@@ -27,7 +27,6 @@
         <%= f.text_field :link %>
       </div>
       <div class="actions_submit">
-        <%= f.hidden_field :position, value: @article.new_record? ? Article.next_position : @article.position %>
         <%= f.submit %>
       </div>
     </div>

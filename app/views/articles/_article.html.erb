@@ -1,7 +1,7 @@
 <a target="_blank" class="article" href="<%= article.link %>"  id="<%= article.position %>">
-  <div class="article_banner no<%= article.current_position %>"><%= article.current_position %></div>
+  <div class="article_banner no<%= article.position %>"><%= article.position %></div>
   <h2><%= article.title %></h2>
-  <% if article.current_position == 1 %>
+  <% if article.first? %>
     <div class="button"></div>
   <% end %>
   <img src="<%= article.image.banner %>" alt="<%= article.title %>" />

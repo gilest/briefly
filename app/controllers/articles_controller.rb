@@ -5,13 +5,11 @@ class ArticlesController < ApplicationController
   
   def index
     @article = Article.new
-    
   end
   
   def create
     @article = Article.new(article_params)
     if @article.save
-      Article.reorder!
       redirect_to article_crop_path(@article), notice: "Article created"
     else
       render action: "index", anchor: 'error_explanation'
@@ -41,33 +39,26 @@ class ArticlesController < ApplicationController
   
   def up
     @article = Article.find(params[:article_id])
-    if @article.move!(:up)
-      redirect_to articles_path(anchor: @article.position), notice: "Article moved up"
-    else
-      redirect_to articles_path(anchor: @article.position), notice: "Article already first"
-    end
+    @article.move_higher
+    redirect_to articles_path(anchor: @article.position)
   end
   
   def down
     @article = Article.find(params[:article_id])
-    if @article.move!(:down)
-      redirect_to articles_path(anchor: @article.position), notice: "Article moved down"
-    else
-      redirect_to articles_path(anchor: @article.position), notice: "Article already last"
-    end
+    @article.move_lower
+    redirect_to articles_path(anchor: @article.position)
   end
   
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    Article.reorder!
     redirect_to articles_path, notice: "Article destroyed"
   end
   
   protected
 
   def load_articles
-    @articles = Article.by_position
+    @articles = Article.all
   end
 
   def article_params

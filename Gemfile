@@ -15,6 +15,8 @@ gem 'mini_magick', '~> 3.7.0'
 
 gem 'jquery-rails', '~> 3.0.4'
 
+gem 'acts_as_list', '~> 0.4.0'
+
 group :development do
   gem 'rails-sh', require: false
   gem 'thin', '~> 1.6.2' 
@@ -33,9 +35,11 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'rspec-rails', '~> 3.0.0.beta2'
+  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'capybara', '~> 2.2.1'
+  gem 'capybara-webkit', '~> 1.1.0'
+  gem 'database_cleaner', '~> 1.2.0'
 end
 
 # Use unicorn as the app server
