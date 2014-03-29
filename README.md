@@ -10,7 +10,7 @@ James - Wendesday/Thursday/Friday
 
 Caleb - TBC
 
-If you're interested in volunteering your time to help edit Briefly [send me an email](mailto:briefly@gilesthompson.co.nz?subject=Editing%20Briefly).
+If you're interested in volunteering your time to help edit Briefly [send me an email](mailto:iam@gilesthompson.co.nz?subject=Editing%20Briefly).
 
 ## Roadmap
 
