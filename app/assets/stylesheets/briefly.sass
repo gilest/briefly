@@ -189,7 +189,7 @@ img
   margin: 0 auto
   margin-top: 20px
 
-#article_link
+#article_link, #article_remote_image_url
   font-size: 16px
   font-family: Georgia, sans-serif
   width: 520px
@@ -223,8 +223,13 @@ img
     margin: 0
     padding: 105px 0 55px
   .upload_wrap
-    width: 225px
+    width: 400px
     margin: 0 auto
+    font-size: 14px
+    #article_image
+      width: 100%
+    #article_remote_image_url
+      width: 355px
   .field_text
     padding: 9px 0 20px
   .field_link
@@ -232,9 +237,11 @@ img
 
 #error_explanation
   color: red
-  background: #eee
-  border: 1px solid #999
+  // background: #eee
+  // border: 1px solid #999
   padding: 10px
+  h2
+    color: red
 
 .no1
   padding-left: 0px

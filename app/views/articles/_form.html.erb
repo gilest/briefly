@@ -2,7 +2,7 @@
   <%= form_for(@article, html: { multipart: true }) do |f| %>
     <% if @article.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@article.errors.count, "error") %> bitch</h2>
+        <h2>There were <%= pluralize(@article.errors.count, "error") %>, bitch</h2>
 
         <ul>
         <% @article.errors.full_messages.each do |msg| %>
@@ -18,7 +18,10 @@
         <%= f.text_field :title %>
       </div>
       <div class="field_image" style="background: url('<%= @article.image.banner %>')">
-        <div class="upload_wrap"><%= f.file_field :image %></div>
+        <div class="upload_wrap">
+          <%= f.label :remote_image_url, 'URL:' %> <%= f.text_field :remote_image_url %><br />
+          <%= f.file_field :image %>
+        </div>
       </div>
       <div class="field_text">
         <%= f.text_area :text %>

@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to article_crop_path(@article), notice: "Article created"
     else
-      render action: "index", anchor: 'error_explanation'
+      render action: :index, anchor: 'error_explanation'
     end
   end
 
@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
        redirect_to article_crop_path(@article)
       end
     else
-      render action: :edit
+      render action: :edit, anchor: 'error_explanation'
     end
   end
   
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h, :updated_at, :image)
+    params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h, :updated_at, :image, :remote_image_url)
   end
 
 end

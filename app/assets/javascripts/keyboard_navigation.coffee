@@ -22,7 +22,7 @@ ready = ->
   if $('.article').length
 
     # css selectors for all user input fields
-    field_selectors = ['.user_field', '.password_field', '#article_title', '#article_text', '#article_link']
+    field_selectors = ['.user_field', '.password_field', '#article_title', '#article_text', '#article_link', '#article_remote_image_url']
 
     $.each field_selectors, (index, selector) ->
 
