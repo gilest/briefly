@@ -5,7 +5,6 @@ module Scrapers
     require 'open-uri'
 
     def initialize(url)
-      raise 'Malformed URL' unless url =~ URI::regexp
       @url = url
       @document = Nokogiri::HTML(open(@url)) # assigning the document to an instance variable is more performant
     end

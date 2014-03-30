@@ -12,7 +12,6 @@ class FormDecorator
     $('#article_remote_image_url').val ''
     $('#article_summary').val ''
 
-
 ready = ->
 
   if $('#article_form').length
@@ -20,17 +19,19 @@ ready = ->
     window.form_decorator = new FormDecorator
 
     $('#article_form').on 'blur','#article_link', ->
-      $.ajax
-        type: 'POST'
-        dataType: 'json'
-        url: "/scrape"
-        data: { 'url': $('#article_link').val() }
-        success: (article) ->
-          window.last_scrape = article
-          form_decorator.decorate article
-        error: (jqXHR, textStatus, errorThrown) ->
-          console.log textStatus
-          form_decorator.reset()
+      url = $('#article_link').val()
+      if /http:\/\/|https:\/\//.test(url) # don't bother unless it kind of looks like a url
+        $.ajax
+          type: 'POST'
+          dataType: 'json'
+          url: "/scrape"
+          data: { 'url': url }
+          success: (article) ->
+            window.last_scrape = article
+            form_decorator.decorate article
+          error: (jqXHR, textStatus, errorThrown) ->
+            console.log textStatus
+            form_decorator.reset()
 
 # turbolinks $(document).ready fix
 $(document).ready(ready)

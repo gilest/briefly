@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
 
   def scrape
     scraper = Scrapers::Router.scraper_for(params[:url])
-    puts "routed to #{scraper}"
+    puts "Routed to #{scraper}"
     respond_to do |format|
       format.json { render json: scraper.new(params[:url]).scrape }
     end
