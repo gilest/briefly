@@ -11,23 +11,23 @@
         </ul>
       </div>
     <% end %>
-
+    
+    <div class="field_link">
+      <%= f.text_field :link, placeholder: 'http://news.com/breaking/news/at/this/hour' %>
+    </div>
     <div class="edit_article_form">
       <div class="article_banner no1"></div>
       <div class="field">
-        <%= f.text_field :title %>
+        <%= f.text_field :title, placeholder: 'Article title' %>
       </div>
       <div class="field_image" style="background: url('<%= @article.image.banner %>')">
         <div class="upload_wrap">
-          <%= f.label :remote_image_url, 'URL:' %> <%= f.text_field :remote_image_url %><br />
+          <%= f.text_field :remote_image_url, placeholder: 'http://news.com/images/whoopi_goldberg.jpg' %><br />
           <%= f.file_field :image %>
         </div>
       </div>
       <div class="field_text">
-        <%= f.text_area :text %>
-      </div>
-      <div class="field_link">
-        <%= f.text_field :link %>
+        <%= f.text_area :summary, placeholder: 'Article summary goes in here' %>
       </div>
       <div class="actions_submit">
         <%= f.submit %>

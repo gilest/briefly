@@ -5,7 +5,7 @@
     <div class="button"></div>
   <% end %>
   <img src="<%= article.image.banner %>" alt="<%= article.title %>" />
-  <div class="article_text"><%= article.text %></div>
+  <div class="article_summary"><%= article.summary %></div>
 </a>
 <% if admin? %>
   <div class="admin_controls">

@@ -6,7 +6,7 @@ FactoryGirl.define do
     title "Sample Article"
     image { fixture_file_upload(Rails.root.join('spec/fixtures/lolcat.jpg'), 'image/jpg') }
     link "http://www.google.com"
-    position 0
+    summary 'Hello'
   end
 
 end

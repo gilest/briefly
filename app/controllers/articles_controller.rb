@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   before_action :authenticate!, except: [:index]
-  before_action :load_articles, except: [:delete]
+  before_action :load_articles, except: [:scrape, :delete]
   
   def index
     @article = Article.new
@@ -36,6 +36,14 @@ class ArticlesController < ApplicationController
       render action: :edit, anchor: 'error_explanation'
     end
   end
+
+  def scrape
+    scraper = Scrapers::Router.scraper_for(params[:url])
+    puts "Routed to #{scraper}"
+    respond_to do |format|
+      format.json { render json: scraper.new(params[:url]).scrape }
+    end
+  end
   
   def up
     @article = Article.find(params[:article_id])
@@ -62,7 +70,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :image, :text, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h, :updated_at, :image, :remote_image_url)
+    params.require(:article).permit(:title, :image, :summary, :link, :position, :crop_x, :crop_y, :crop_w, :crop_h, :updated_at, :image, :remote_image_url)
   end
 
 end

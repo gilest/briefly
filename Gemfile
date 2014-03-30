@@ -17,6 +17,8 @@ gem 'jquery-rails', '~> 3.0.4'
 
 gem 'acts_as_list', '~> 0.4.0'
 
+gem 'nokogiri', '~> 1.6.1'
+
 group :development do
   gem 'rails-sh', require: false
   gem 'thin', '~> 1.6.2' 
