@@ -21,7 +21,7 @@ If you're interested in volunteering your time to help edit Briefly [send me an 
 * ~~Create an 'Articles' resource~~
 * ~~Extract the public and private controller logic into an Articles controller~~
 * ~~Add in functionality for more admin user accounts~~
-* Smart scraper to create article drafts
+* ~~Smart scraper to create article drafts~~
 * Drag and drop ordering of articles
 * Caching layer
 * Editor dashboard fed by scrapers
