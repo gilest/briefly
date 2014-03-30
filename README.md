@@ -1,5 +1,7 @@
 # Briefly
 
+[![Code Climate](https://codeclimate.com/github/gilest/briefly.png)](https://codeclimate.com/github/gilest/briefly)
+
 Fast news for short attention spans from New Zealand and the world.
 
 ![Preview](preview.jpg)
