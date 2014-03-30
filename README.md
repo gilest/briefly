@@ -8,11 +8,11 @@ You can [check it out here](http://briefly.co.nz).
 
 ## Editors
 
-Giles - Saturday/Sunday/Monday/Tuesday
+Giles - Monday/Tuesday
 
 James - Wendesday/Thursday/Friday
 
-Caleb - TBC
+Caleb - Saturday/Sunday
 
 If you're interested in volunteering your time to help edit Briefly [send me an email](mailto:iam@gilesthompson.co.nz?subject=Editing%20Briefly).
 
@@ -24,3 +24,6 @@ If you're interested in volunteering your time to help edit Briefly [send me an 
 * Smart scraper to create article drafts
 * Drag and drop ordering of articles
 * Editor dashboard fed by scrapers
+* Link-shortening and analytics via brfly.com
+* Twitter and Facebook auto-posting
+* Public API
