@@ -41,8 +41,8 @@ ready = ->
       # (j) and (k) for vim users
 
       switch event.which
-        when 74, 78, 70 then nav.down() # j n, f
-        when 75, 80, 66 then nav.up()   # k p, b
+        when 74, 78, 70 then nav.down() # j, n, f
+        when 75, 80, 66 then nav.up()   # k, p, b
 
 # turbolinks $(document).ready fix
 $(document).ready(ready)
