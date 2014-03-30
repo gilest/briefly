@@ -32,6 +32,8 @@ ready = ->
           error: (jqXHR, textStatus, errorThrown) ->
             console.log textStatus
             form_decorator.reset()
+      else
+        form_decorator.reset()
 
 # turbolinks $(document).ready fix
 $(document).ready(ready)
