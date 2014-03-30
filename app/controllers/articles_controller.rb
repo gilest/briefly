@@ -38,9 +38,11 @@ class ArticlesController < ApplicationController
   end
 
   def scrape
-    scraper = ScraperRouter.scraper_for(params[:url])
-    Article.create!(scraper.new(params[:url]).scrape)
-    redirect_to articles_path, notice: 'Article scraped'
+    scraper = Scrapers::Router.scraper_for(params[:url])
+    puts "routed to #{scraper}"
+    respond_to do |format|
+      format.json { render json: scraper.new(params[:url]).scrape }
+    end
   end
   
   def up

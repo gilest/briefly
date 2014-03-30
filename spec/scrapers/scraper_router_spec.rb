@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe ScraperRouter do
+describe Scrapers::Router do
 
-  it { expect(ScraperRouter.scraper_for('foxnews.com.au')).to eq(ArticleScraper) }
-  it { expect(ScraperRouter.scraper_for('radionz.co.nz')).to eq(RadioNZScraper) }
+  it { expect(Scrapers::Router.scraper_for('foxnews.com.au')).to eq(Scrapers::ArticleScraper) }
+  it { expect(Scrapers::Router.scraper_for('radionz.co.nz')).to eq(Scrapers::RadioNZScraper) }
+  it { expect(Scrapers::Router.scraper_for('bbc.com')).to eq(Scrapers::BBCScraper) }
   
 end
