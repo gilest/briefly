@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   require 'yaml'
 
   def create
-    if credentials[params[:login]] && BCrypt::Password.new(credentials[params[:login]]) == params[:password]
+    if valid_credentials?
       session[:admin] = params[:login]
       redirect_to root_path, notice: "Successfully signed in"
     else
@@ -17,6 +17,10 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def valid_credentials?
+    credentials[params[:login]] && BCrypt::Password.new(credentials[params[:login]]) == params[:password]
+  end
 
   # genreate new credentials with
   # BCrypt::Password.create('supersecret')
