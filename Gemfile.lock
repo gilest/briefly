@@ -223,6 +223,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.2.1)
   jquery-rails (~> 3.0.4)
   mini_magick (~> 3.7.0)
+  nokogiri (~> 1.6.1)
   pry (~> 0.9.12.6)
   rails (= 4.0.4)
   rails-sh

@@ -10,6 +10,7 @@
 #  text       :text
 #  position   :integer
 #  image      :string(255)
+#  summary    :text
 #
 
 class Article < ActiveRecord::Base
