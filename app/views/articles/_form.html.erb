@@ -11,11 +11,12 @@
         </ul>
       </div>
     <% end %>
-    
+
     <div class="field_link">
       <%= f.text_field :link, placeholder: 'http://news.com/breaking/news/at/this/hour' %>
     </div>
     <div class="edit_article_form">
+      <%= render 'layouts/loader' %>
       <div class="article_banner no1"></div>
       <div class="field">
         <%= f.text_field :title, placeholder: 'Article title' %>

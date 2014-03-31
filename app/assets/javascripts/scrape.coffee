@@ -12,6 +12,12 @@ class FormDecorator
     $('#article_remote_image_url').val ''
     $('#article_summary').val ''
 
+  loading: ->
+    $('#loader').show()
+
+  done: ->
+    $('#loader').hide()
+
 ready = ->
 
   if $('#article_form').length
@@ -21,16 +27,18 @@ ready = ->
     $('#article_form').on 'blur','#article_link', ->
       url = $('#article_link').val()
       if /http:\/\/|https:\/\//.test(url) # don't bother unless it kind of looks like a url
+        form_decorator.loading()
         $.ajax
           type: 'POST'
           dataType: 'json'
           url: "/scrape"
           data: { 'url': url }
           success: (article) ->
-            window.last_scrape = article
+            form_decorator.done()
             form_decorator.decorate article
           error: (jqXHR, textStatus, errorThrown) ->
             console.log textStatus
+            form_decorator.done()
             form_decorator.reset()
       else
         form_decorator.reset()
