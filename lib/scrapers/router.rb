@@ -1,3 +1,4 @@
+require 'scrapers/al_jazeera_scraper'
 require 'scrapers/article_scraper'
 require 'scrapers/bbc_scraper'
 require 'scrapers/nz_herald_scraper'
