@@ -2,11 +2,11 @@ class ArticlesController < ApplicationController
 
   before_action :authenticate!, except: [:index]
   before_action :load_articles, except: [:scrape, :delete]
-  
+
   def index
     @article = Article.new
   end
-  
+
   def create
     @article = Article.new(article_params)
     if @article.save
@@ -19,11 +19,11 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
   end
-  
+
   def crop
     @article = Article.find(params[:article_id])
   end
-  
+
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(article_params)
@@ -44,25 +44,25 @@ class ArticlesController < ApplicationController
       format.json { render json: scraper.new(params[:url]).scrape }
     end
   end
-  
+
   def up
     @article = Article.find(params[:article_id])
     @article.move_higher
     redirect_to articles_path(anchor: @article.position)
   end
-  
+
   def down
     @article = Article.find(params[:article_id])
     @article.move_lower
     redirect_to articles_path(anchor: @article.position)
   end
-  
+
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path, notice: "Article destroyed"
   end
-  
+
   protected
 
   def load_articles

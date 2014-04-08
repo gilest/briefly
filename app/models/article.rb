@@ -35,4 +35,14 @@ class Article < ActiveRecord::Base
     hash[self] + 1
   end
 
+  def as_json(options = {})
+    {
+      id: position,
+      title: title,
+      summary: summary,
+      link: link,
+      image: image.url
+    }
+  end
+
 end
