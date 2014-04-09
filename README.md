@@ -24,9 +24,9 @@ If you're interested in volunteering your time to help edit Briefly [send me an 
 * ~~Extract the public and private controller logic into an Articles controller~~
 * ~~Add in functionality for more admin user accounts~~
 * ~~Smart scraper to create article drafts~~
+* ~~Public API~~
 * Drag and drop ordering of articles
 * Caching layer
 * Editor dashboard fed by scrapers
 * Link-shortening and analytics via brfly.com
 * Twitter and Facebook auto-posting
-* Public API
