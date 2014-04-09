@@ -12,7 +12,7 @@ Briefly::Application.routes.draw do
     end
   end
 
-  scope module: :api, constraints: { subdomain: 'api' } do
+  scope module: :api, constraints: { subdomain: /api/ } do
     namespace :v1 do
       resources :articles, only: :index
     end
