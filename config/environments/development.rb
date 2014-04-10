@@ -12,28 +12,16 @@ Briefly::Application.configure do
 
   config.eager_load = false
 
-# 
-#   ActionMailer::Base.smtp_settings = {
-#     :address              => "smtp.gmail.com",
-#     :port                 => 587,
-#     :domain               => '',
-#     :user_name            => '',
-#     :password             => '',
-#     :authentication       => 'plain',
-#     :enable_starttls_auto => true  
-#   }
-# 
-#   ActionMailer::Base.perform_deliveries = true
-#   ActionMailer::Base.raise_delivery_errors = true
-# 
-#   config.action_mailer.default_url_options = { :host => '' }
-
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  config.web_domain = 'briefly.local'
+  config.shortener_domain = 'brfly.local'
+
+  config.action_controller.asset_host = "http://#{config.web_domain}:3000"
 
   config.assets.enabled = true
 
