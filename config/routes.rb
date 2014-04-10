@@ -7,10 +7,13 @@ Briefly::Application.routes.draw do
     post '/sign_in' => 'sessions#create', as: :create_session
     delete '/sign_out' => 'sessions#destroy', as: :destroy_session
 
-    resources :articles, path: '', except: [:show] do
-      get 'crop', as: :crop
-      get 'up', as: :up
-      get 'down', as: :down
+    resources :articles, path: '', except: [:show, :destroy] do
+      member do
+        get 'crop', as: :crop
+        get 'up', as: :up
+        get 'down', as: :down
+        get 'archive', as: :archive
+      end
       collection do
         post 'scrape', as: :scrape
       end

@@ -10,12 +10,14 @@
 #  position   :integer
 #  image      :string(255)
 #  summary    :text
+#  archived   :boolean          default(FALSE)
 #
 
 class Article < ActiveRecord::Base
-  validates_presence_of :title, :image, :link
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  validates_presence_of :title, :image, :link
 
   mount_uploader :image, ImageUploader
 
@@ -24,7 +26,7 @@ class Article < ActiveRecord::Base
 
   acts_as_list
 
-  default_scope -> { order('position asc, id asc') }
+  default_scope -> { where(archived: false).order('position asc, id asc') }
 
   def crop_image
     image.recreate_versions! if crop_x.present?
@@ -43,6 +45,11 @@ class Article < ActiveRecord::Base
       link: link,
       image: image.url
     }
+  end
+
+  def archive!
+    remove_from_list
+    update_column :archived, true
   end
 
 end

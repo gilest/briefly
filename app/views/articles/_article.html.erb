@@ -10,10 +10,10 @@
 <% if admin? %>
   <div class="admin_controls">
     <%= article.position.to_s %> | 
-    <%= link_to 'Up', article_up_path(article) %> | 
-    <%= link_to 'Down', article_down_path(article) %> | 
-    <%= link_to 'Crop', article_crop_path(article) %>| 
+    <%= link_to 'Up', up_article_path(article) %> | 
+    <%= link_to 'Down', down_article_path(article) %> | 
+    <%= link_to 'Crop', crop_article_path(article) %>| 
     <%= link_to 'Edit', edit_article_path(article) %> | 
-    <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Archive', archive_article_path(article), data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>

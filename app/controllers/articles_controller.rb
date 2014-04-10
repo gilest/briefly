@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   before_action :authenticate!, except: [:index]
+  before_action :set_article, except: [:index, :create, :scrape]
   before_action :load_articles, except: [:scrape, :delete]
 
   def index
@@ -17,15 +18,12 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def crop
-    @article = Article.find(params[:article_id])
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update_attributes(article_params)
       if params[:article][:image].blank?
         redirect_to articles_path, notice: "Article updated"
@@ -46,24 +44,25 @@ class ArticlesController < ApplicationController
   end
 
   def up
-    @article = Article.find(params[:article_id])
     @article.move_higher
     redirect_to articles_path(anchor: @article.position)
   end
 
   def down
-    @article = Article.find(params[:article_id])
     @article.move_lower
     redirect_to articles_path(anchor: @article.position)
   end
 
-  def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
-    redirect_to articles_path, notice: "Article destroyed"
+  def archive
+    @article.archive!
+    redirect_to articles_path, notice: "Article archived"
   end
 
   protected
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
   def load_articles
     @articles = Article.all

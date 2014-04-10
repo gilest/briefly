@@ -10,6 +10,7 @@
 #  position   :integer
 #  image      :string(255)
 #  summary    :text
+#  archived   :boolean          default(FALSE)
 #
 
 require 'spec_helper'
