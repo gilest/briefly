@@ -58,4 +58,20 @@ describe Article do
 
   end
 
+  describe "archiving" do
+
+    before :each do
+      @article3 = create :article
+      @article2 = create :article
+      @article1 = create :article
+      @article1.archive!
+    end
+
+    it { expect(@article1.position).to be(nil) }
+    it { expect(Article.all.include?(@article1)).to be(false) }
+    it { expect(@article2.position).to be(1) }
+    it { expect(@article2.reload.first?).to be(true) }
+
+  end
+
 end
