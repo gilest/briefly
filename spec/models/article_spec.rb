@@ -2,15 +2,17 @@
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  link       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  position   :integer
-#  image      :string(255)
-#  summary    :text
-#  archived   :boolean          default(FALSE)
+#  id               :integer          not null, primary key
+#  title            :string(255)
+#  link             :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  position         :integer
+#  image            :string(255)
+#  summary          :text
+#  archived         :boolean          default(FALSE)
+#  shortener_string :string(255)
+#  visits           :integer
 #
 
 require 'spec_helper'

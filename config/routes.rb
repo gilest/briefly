@@ -29,7 +29,7 @@ Briefly::Application.routes.draw do
 
   constraints DomainConstraint.new(Briefly::Application.config.shortener_domain) do
 
-    # shortener route here
+    get '/:shortener_string' => 'articles#show', as: :shortened_article
 
   end
 

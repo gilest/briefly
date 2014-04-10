@@ -2,15 +2,17 @@
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  link       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  position   :integer
-#  image      :string(255)
-#  summary    :text
-#  archived   :boolean          default(FALSE)
+#  id               :integer          not null, primary key
+#  title            :string(255)
+#  link             :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  position         :integer
+#  image            :string(255)
+#  summary          :text
+#  archived         :boolean          default(FALSE)
+#  shortener_string :string(255)
+#  visits           :integer
 #
 
 class Article < ActiveRecord::Base
@@ -24,6 +26,7 @@ class Article < ActiveRecord::Base
   after_update :crop_image
   after_create :move_to_top
 
+  include HasShortenedUrl
   acts_as_list
 
   default_scope -> { where(archived: false).order('position asc, id asc') }

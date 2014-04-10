@@ -1,11 +1,19 @@
 class ArticlesController < ApplicationController
 
-  before_action :authenticate!, except: [:index]
-  before_action :set_article, except: [:index, :create, :scrape]
-  before_action :load_articles, except: [:scrape, :delete]
+  before_action :authenticate!, except: [:index, :show]
+  before_action :set_article, except: [:index, :create, :scrape, :show]
+  before_action :load_articles, except: [:scrape, :delete, :show]
 
   def index
     @article = Article.new
+  end
+
+  # special method used by url shortener brfly.com
+  def show
+    @article = Article.find_by(shortener_string: params[:shortener_string])
+    not_found if @article.nil?
+    @article.update_column :visits, @article.visits + 1
+    redirect_to @article.link
   end
 
   def create
