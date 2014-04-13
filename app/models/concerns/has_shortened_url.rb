@@ -10,7 +10,7 @@ module HasShortenedUrl
       string = random_string(10)
       # in the unlikely case that the url isn't unique, try again until it is
       while Article.exists?(shortener_string: string) do
-        string = random_string(length)
+        string = random_string(10)
       end
       update_column :shortener_string, string
     end
