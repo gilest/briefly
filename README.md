@@ -25,8 +25,8 @@ If you're interested in volunteering your time to help edit Briefly [send me an 
 * ~~Add in functionality for more admin user accounts~~
 * ~~Smart scraper to create article drafts~~
 * ~~Public API~~
+* ~~Link-shortening and analytics via brfly.com~~
 * Drag and drop ordering of articles
 * Caching layer
 * Editor dashboard fed by scrapers
-* Link-shortening and analytics via brfly.com
 * Twitter and Facebook auto-posting
