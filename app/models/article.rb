@@ -50,6 +50,10 @@ class Article < ActiveRecord::Base
     }
   end
 
+  def record_visit!
+    update_column :visits, visits + 1
+  end
+
   def archive!
     remove_from_list
     update_column :archived, true

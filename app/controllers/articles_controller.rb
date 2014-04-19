@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find_by(shortener_string: params[:shortener_string])
     not_found if @article.nil?
-    @article.update_column :visits, @article.visits + 1
+    @article.record_visit!
     redirect_to @article.link
   end
 
