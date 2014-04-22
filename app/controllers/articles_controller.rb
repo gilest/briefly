@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to article_crop_path(@article), notice: "Article created"
+      redirect_to crop_article_path(@article), notice: "Article created"
     else
       render action: :index, anchor: 'error_explanation'
     end
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
       if params[:article][:image].blank?
         redirect_to articles_path, notice: "Article updated"
       else
-       redirect_to article_crop_path(@article)
+       redirect_to crop_article_path(@article)
       end
     else
       render action: :edit, anchor: 'error_explanation'
