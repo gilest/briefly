@@ -19,6 +19,7 @@ Briefly::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   config.web_domain = 'briefly.local'
+  config.api_domain = 'api.briefly.local'
   config.shortener_domain = 'brfly.local'
 
   config.action_controller.asset_host = "http://#{config.web_domain}:3000"

@@ -19,7 +19,11 @@ Briefly::Application.routes.draw do
       end
     end
 
-    scope module: :api, constraints: { subdomain: /api/ } do
+  end
+
+  constraints DomainConstraint.new(Briefly::Application.config.api_domain) do
+
+    scope module: :api do
       namespace :v1 do
         resources :articles, only: :index
       end

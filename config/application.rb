@@ -23,6 +23,7 @@ module Briefly
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.web_domain = ActiveSupport::OrderedOptions.new
+    config.api_domain = ActiveSupport::OrderedOptions.new
     config.shortener_domain = ActiveSupport::OrderedOptions.new
   end
 end

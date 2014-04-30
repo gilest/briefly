@@ -36,6 +36,7 @@ Briefly::Application.configure do
   config.assets.version = '1.0'
 
   config.web_domain = 'briefly.co.nz'
+  config.api_domain = 'api.briefly.co.nz'
   config.shortener_domain = 'brfly.com'
 
   config.action_controller.asset_host = "http://#{config.web_domain}"
