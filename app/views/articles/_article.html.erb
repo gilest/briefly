@@ -1,4 +1,4 @@
-<a target="_blank" class="article" href="<%= shortened_article_url(article) %>"  id="<%= article.position %>">
+<a target="_blank" class="article" href="<%= article.shortened_url %>"  id="<%= article.position %>">
   <div class="article_banner no<%= article.position %>"><%= article.position %></div>
   <h2><%= article.title %></h2>
   <% if article.first? %>
@@ -9,7 +9,8 @@
 </a>
 <% if admin? %>
   <div class="visits">
-    Visits: <%= article.visits %>
+    Visits: <%= article.visits %>,
+    Tweeted: <%= article.tweeted? %>
   </div>
   <div class="admin_controls">
     <%= article.position.to_s %> | 

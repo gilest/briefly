@@ -20,4 +20,8 @@ module HasShortenedUrl
     rand(36**length).to_s(36)
   end
 
+  def shortened_url
+    "http://#{Briefly::Application.config.shortener_domain}#{':3000' if Rails.env.development?}/#{shortener_string}"
+  end
+
 end

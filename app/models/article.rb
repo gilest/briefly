@@ -40,6 +40,21 @@ class Article < ActiveRecord::Base
     hash[self] + 1
   end
 
+  def as_tweet
+    "#{title.upcase} #{shortened_url}"
+  end
+
+  def publish!
+    tweet!
+  end
+
+  def tweet!
+    unless tweeted? or archived?
+      Tweeter.new.client.update as_tweet
+      update_column :tweeted, true
+    end
+  end
+
   def as_json(options = {})
     {
       id: position,

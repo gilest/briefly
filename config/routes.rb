@@ -9,13 +9,14 @@ Briefly::Application.routes.draw do
 
     resources :articles, path: '', except: [:show, :destroy] do
       member do
-        get 'crop', as: :crop
-        get 'up', as: :up
-        get 'down', as: :down
-        get 'archive', as: :archive
+        get :crop
+        get :up
+        get :down
+        get :archive
       end
       collection do
-        post 'scrape', as: :scrape
+        post :scrape
+        get :publish
       end
     end
 
