@@ -18,6 +18,10 @@ Caleb - Saturday/Sunday
 
 If you're interested in volunteering your time to help edit Briefly [send me an email](mailto:iam@gilesthompson.co.nz?subject=Editing%20Briefly).
 
+## API
+
+There is a public API available away at `http://api.briefly.co.nz/v1/articles.json`. We'd love to see it used for something.
+
 ## Roadmap
 
 * ~~Create an 'Articles' resource~~
