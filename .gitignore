@@ -24,3 +24,4 @@ vendor/cache/
 vendor/cache/
 public/uploads/**
 config/credentials.yml
+config/keys.yml

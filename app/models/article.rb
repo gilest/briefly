@@ -40,6 +40,15 @@ class Article < ActiveRecord::Base
     hash[self] + 1
   end
 
+  def as_tweet
+    "#{title.upcase} #{shortened_url}"
+  end
+
+  def tweet!
+    client = Tweeter.new.client
+    client.update as_tweet
+  end
+
   def as_json(options = {})
     {
       id: position,
