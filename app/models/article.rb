@@ -44,9 +44,15 @@ class Article < ActiveRecord::Base
     "#{title.upcase} #{shortened_url}"
   end
 
+  def publish!
+    tweet!
+  end
+
   def tweet!
-    client = Tweeter.new.client
-    client.update as_tweet
+    unless tweeted? or archived?
+      Tweeter.new.client.update as_tweet
+      update_column :tweeted, true
+    end
   end
 
   def as_json(options = {})
