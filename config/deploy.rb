@@ -54,11 +54,13 @@ namespace :credentials do
     on roles(:app) do
       execute "mkdir -p #{deploy_to}/shared/config"
       upload! 'config/credentials.yml', "#{deploy_to}/shared/config"
+      upload! 'config/keys.yml', "#{deploy_to}/shared/config"
     end
   end
   task :download do
     on roles(:app) do
       download! "#{deploy_to}/shared/config/credentials.yml", 'config/credentials.yml'
+      download! "#{deploy_to}/shared/config/keys.yml", 'config/keys.yml'
     end
   end
 
