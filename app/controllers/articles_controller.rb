@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   before_action :authenticate!, except: [:index, :show]
-  before_action :set_article, except: [:index, :create, :scrape, :show]
+  before_action :set_article, except: [:index, :create, :publish, :scrape, :show]
   before_action :load_articles, except: [:scrape, :delete, :show]
 
   def index
@@ -41,6 +41,11 @@ class ArticlesController < ApplicationController
     else
       render action: :edit, anchor: 'error_explanation'
     end
+  end
+
+  def publish
+    @articles.each(&:publish!)
+    redirect_to articles_path, notice: 'Articles published'
   end
 
   def scrape

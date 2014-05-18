@@ -9,7 +9,8 @@
 </a>
 <% if admin? %>
   <div class="visits">
-    Visits: <%= article.visits %>
+    Visits: <%= article.visits %>,
+    Tweeted: <%= article.tweeted? %>
   </div>
   <div class="admin_controls">
     <%= article.position.to_s %> | 
