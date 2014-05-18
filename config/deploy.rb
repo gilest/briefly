@@ -12,7 +12,7 @@ set :deploy_to, '/home/web/briefly'
 set :unicorn_config_path, "#{release_path}/config/unicorn.rb"
 
 set :linked_dirs, fetch(:linked_dirs) + %w{log tmp/pids tmp/sockets tmp/cache public/uploads}
-set :linked_files, %w{config/credentials.yml db/production.sqlite3}
+set :linked_files, %w{config/credentials.yml config/keys.yml db/production.sqlite3}
 
 # fix for nokogiri trying to compile its own libs
 set :bundle_env_variables, { 'NOKOGIRI_USE_SYSTEM_LIBRARIES' => 1 }
