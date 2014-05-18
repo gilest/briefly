@@ -22,6 +22,7 @@ Briefly::Application.configure do
   config.api_domain = 'api.briefly.local'
   config.shortener_domain = 'brfly.local'
 
+  config.shortener_host = "http://#{config.shortener_domain}:3000"
   config.action_controller.asset_host = "http://#{config.web_domain}:3000"
 
   config.assets.enabled = true

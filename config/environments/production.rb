@@ -39,6 +39,7 @@ Briefly::Application.configure do
   config.api_domain = 'api.briefly.co.nz'
   config.shortener_domain = 'brfly.com'
 
+  config.shortener_host = "http://#{config.shortener_domain}"
   config.action_controller.asset_host = "http://#{config.web_domain}"
 
   # Specifies the header that your server uses for sending files.
