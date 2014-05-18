@@ -4,4 +4,4 @@
 
 <%= render 'form' if admin? %>
 
-<%= link_to 'Publish articles', publish_articles_path, class: 'publish_button', confirm: 'U sure?' %>
+<%= link_to 'Publish articles', publish_articles_path, class: 'publish_button', confirm: 'U sure?' if admin? %>
