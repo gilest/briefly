@@ -30,7 +30,8 @@ There is a public API available away at `http://api.briefly.co.nz/v1/articles.js
 * ~~Smart scraper to create article drafts~~
 * ~~Public API~~
 * ~~Link-shortening and analytics via brfly.com~~
-* Drag and drop ordering of articles
+* ~~Twitter publishing~~
+* Facebook publishing
 * Caching layer
+* Drag and drop ordering of articles
 * Editor dashboard fed by scrapers
-* Twitter and Facebook auto-posting
