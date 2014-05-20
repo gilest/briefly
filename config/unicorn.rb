@@ -5,7 +5,7 @@ app_path = "#{deploy_path}/current"
 # Set unicorn options
 worker_processes 1
 preload_app true
-timeout 20
+timeout 45
 # listen 80
 listen "#{app_path}/tmp/sockets/unicorn.sock", :backlog => 64
 
