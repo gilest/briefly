@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   # BCrypt::Password.create('supersecret')
   # => "$2a$10$rpxN2dXLOOKsUyqU76m7IuTjWsrWyr67ARI1/833Cn3VKF1lKQflK"
   def credentials
-    YAML.load_file 'config/credentials.yml'
+    YAML.load_file('config/secrets.yml')['admins']
   end
 
 end

@@ -12,13 +12,13 @@ set :deploy_to, '/home/web/briefly'
 set :unicorn_config_path, "#{release_path}/config/unicorn.rb"
 
 set :linked_dirs, fetch(:linked_dirs) + %w{log tmp/pids tmp/sockets tmp/cache public/uploads}
-set :linked_files, %w{config/credentials.yml config/keys.yml db/production.sqlite3}
+set :linked_files, %w{config/secrets.yml db/production.sqlite3}
 
 # fix for nokogiri trying to compile its own libs
 set :bundle_env_variables, { 'NOKOGIRI_USE_SYSTEM_LIBRARIES' => 1 }
 
 # ensure that the linked_files exist on the server for a deploy to succeed
-# use db:upload and credentials:upload to get set up
+# use db:upload and secrets:upload to get set up
 
 after 'deploy:publishing', 'deploy:restart'
 
@@ -48,19 +48,17 @@ namespace :db do
 
 end
 
-namespace :credentials do
+namespace :secrets do
 
   task :upload do
     on roles(:app) do
       execute "mkdir -p #{deploy_to}/shared/config"
-      upload! 'config/credentials.yml', "#{deploy_to}/shared/config"
-      upload! 'config/keys.yml', "#{deploy_to}/shared/config"
+      upload! 'config/secrets.yml', "#{deploy_to}/shared/config"
     end
   end
   task :download do
     on roles(:app) do
-      download! "#{deploy_to}/shared/config/credentials.yml", 'config/credentials.yml'
-      download! "#{deploy_to}/shared/config/keys.yml", 'config/keys.yml'
+      download! "#{deploy_to}/shared/config/secrets.yml", 'config/secrets.yml'
     end
   end
 
