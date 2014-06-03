@@ -60,8 +60,10 @@ class Article < ActiveRecord::Base
       id: position,
       title: title,
       summary: summary,
-      link: link,
-      image: image.url
+      url: shortened_url,
+      destination: link,
+      image: image.url,
+      image_banner: image.banner.url
     }
   end
 
