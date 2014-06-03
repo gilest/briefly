@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
 
   # special method used by url shortener brfly.com
   def show
-    @article = Article.find_by(shortener_string: params[:shortener_string])
+    @article = Article.unscoped.find_by(shortener_string: params[:shortener_string])
     not_found if @article.nil?
     @article.record_visit!
     redirect_to @article.link
