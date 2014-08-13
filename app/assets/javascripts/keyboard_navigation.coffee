@@ -6,7 +6,7 @@ nav.up = ->
   if nav.enabled
     nav.current_article--
     nav.current_article = 1 if nav.current_article < 1
-    $("#" + nav.current_article).focus()
+    nav.scroll()
   return
 
 nav.down = ->
@@ -14,8 +14,16 @@ nav.down = ->
     number_of_articles = $(".article").length
     nav.current_article++
     nav.current_article = number_of_articles if nav.current_article > number_of_articles
-    $("#" + nav.current_article).focus()
+    nav.scroll()
   return
+
+nav.scroll = ->
+  # ought to place the current article in around about the middle of the screen
+  article_offset = $("##{nav.current_article}").offset().top
+  article_height = $(".article").first().height()
+  extra_padding = ($(window).height() - article_height) / 2
+  scroll_offset = article_offset - extra_padding
+  $(window).scrollTop(scroll_offset)
 
 ready = ->
 

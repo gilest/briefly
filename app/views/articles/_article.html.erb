@@ -1,11 +1,12 @@
-<a target="_blank" class="article" href="<%= article.shortened_url %>"  id="<%= article.position %>">
-  <div class="article_banner no<%= article.position %>"><%= article.position %></div>
-  <h2><%= article.title %></h2>
-  <% if article.first? %>
-    <div class="button"></div>
-  <% end %>
-  <img src="<%= article.image.banner %>" alt="<%= article.title %>" />
-  <div class="article_summary"><%= article.summary %></div>
+<a class="article <%= article.position %>" href="<%= article.shortened_url %>" id="<%= article.position %>" target="_blank" >
+  <h2 class="art_tit">
+    <span><%= '%02i' % article.position %> | </span><%= article.title %>
+  </h2>
+  <section class="art_img" style="background: url(<%= article.image %>)">
+    <div class="art_summary"><%= article.summary %></div>
+    <div class="art_darkness"></div>
+    <div class="art_overlay"></div>
+  </section>
 </a>
 <% if admin? %>
   <div class="visits">
