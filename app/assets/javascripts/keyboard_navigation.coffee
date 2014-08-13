@@ -24,6 +24,7 @@ nav.scroll = ->
   extra_padding = ($(window).height() - article_height) / 2
   scroll_offset = article_offset - extra_padding
   $(window).scrollTop(scroll_offset)
+  $("##{nav.current_article}").focus()
 
 ready = ->
 
