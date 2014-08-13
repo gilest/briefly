@@ -20,6 +20,7 @@ gem 'acts_as_list', '~> 0.4.0'
 gem 'nokogiri', '~> 1.6.1'
 
 gem 'twitter', '~> 5.9.0'
+gem 'koala', '~> 1.9.0'
 
 group :development do
   gem 'rails-sh', require: false
