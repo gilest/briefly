@@ -2,7 +2,7 @@
   <h2 class="art_tit">
     <span><%= '%02i' % article.position %> | </span><%= article.title %>
   </h2>
-  <section class="art_img" style="background: url(<%= article.image %>)">
+  <section class="art_img" style="background: url(<%= article.image.banner %>)">
     <div class="art_summary"><%= article.summary %></div>
     <div class="art_darkness"></div>
     <div class="art_overlay"></div>

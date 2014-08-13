@@ -24,7 +24,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :banner do
     process :crop
-    process resize_to_fill: [661, 240, 'North']
+    process resize_to_fill: [960, 350, 'North']
   end
 
   def crop
