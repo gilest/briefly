@@ -2,23 +2,22 @@
   <h2 class="art_tit">
     <span><%= '%02i' % article.position %> | </span><%= article.title %>
   </h2>
-  <section class="art_img" style="background: url(<%= article.image.banner %>)">
+  <section class="art_img" style="background-image: url(<%= article.image.banner %>)">
     <div class="art_summary"><%= article.summary %></div>
     <div class="art_darkness"></div>
     <div class="art_overlay"></div>
   </section>
 </a>
 <% if admin? %>
-  <div class="visits">
-    Visits: <%= article.visits %>,
-    Tweeted: <%= article.tweeted? %>
+  <div class="admin_stats">
+    <div class="item"><%= article.visits %></div>
+    <div class="item"><%= article.tweeted %></div>
   </div>
   <div class="admin_controls">
-    <%= article.position.to_s %> | 
-    <%= link_to 'Up', up_article_path(article) %> | 
-    <%= link_to 'Down', down_article_path(article) %> | 
-    <%= link_to 'Crop', crop_article_path(article) %>| 
-    <%= link_to 'Edit', edit_article_path(article) %> | 
-    <%= link_to 'Archive', archive_article_path(article), data: { confirm: 'Are you sure?' } %>
+    <%= link_to raw('&uarr;'), up_article_path(article), class: 'button' %>
+    <%= link_to raw('&darr;'), down_article_path(article), class: 'button' %>
+    <%= link_to 'Crop', crop_article_path(article), class: 'button' %>
+    <%= link_to 'Edit', edit_article_path(article), class: 'button' %>
+    <%= link_to 'Archive', archive_article_path(article), class: 'button', data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>

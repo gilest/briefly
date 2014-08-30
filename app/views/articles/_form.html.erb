@@ -1,4 +1,9 @@
-<div id="article_form">
+<div class="scrape_link_container">
+  <%= text_field_tag :link, nil, placeholder: 'http://news.com/breaking/news/at/this/hour', class: 'scrape_link' %>
+</div>
+
+<div class="article article_form">
+  <%= render 'layouts/loader' %>
   <%= form_for(@article, html: { multipart: true }) do |f| %>
     <% if @article.errors.any? %>
       <div id="error_explanation">
@@ -12,27 +17,17 @@
       </div>
     <% end %>
 
-    <div class="field_link">
-      <%= f.text_field :link, placeholder: 'http://news.com/breaking/news/at/this/hour' %>
-    </div>
-    <div class="edit_article_form">
-      <%= render 'layouts/loader' %>
-      <div class="article_banner no1"></div>
-      <div class="field">
-        <%= f.text_field :title, placeholder: 'Article title' %>
+    <h2 class="art_tit">
+      <span><%= Article.count + 1 %> | </span><%= f.text_field :title, placeholder: 'Article title' %>
+    </h2>
+    <section class="art_img" style="background-image: url('<%= @article.image.banner %>')">
+      <div class="upload_wrap">
+        <%= f.text_field :remote_image_url, placeholder: 'http://news.com/images/whoopi_goldberg.jpg' %><br />
+        <%= f.file_field :image %>
       </div>
-      <div class="field_image" style="background: url('<%= @article.image.banner %>')">
-        <div class="upload_wrap">
-          <%= f.text_field :remote_image_url, placeholder: 'http://news.com/images/whoopi_goldberg.jpg' %><br />
-          <%= f.file_field :image %>
-        </div>
-      </div>
-      <div class="field_text">
-        <%= f.text_area :summary, placeholder: 'Article summary goes in here' %>
-      </div>
-      <div class="actions_submit">
-        <%= f.submit %>
-      </div>
-    </div>
+      <div class="art_summary"><%= f.text_area :summary, placeholder: 'Article summary goes in here' %></div>
+      <div class="art_darkness"></div>
+    </section>
+    <%= f.submit nil, class: 'article_button' %>
   <% end %>
 </div>

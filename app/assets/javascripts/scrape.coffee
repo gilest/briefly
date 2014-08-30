@@ -2,13 +2,13 @@ class FormDecorator
 
   decorate: (article) ->
     $('#article_title').val article.title
-    $('.field_image').css 'background', "url('#{article.remote_image_url}')"
+    $('.art_img').css 'background-image', "url('#{article.remote_image_url}')"
     $('#article_remote_image_url').val article.remote_image_url
     $('#article_summary').val article.summary
 
   reset: ->
     $('#article_title').val ''
-    $('.field_image').removeAttr 'style'
+    $('.art_img').removeAttr 'style'
     $('#article_remote_image_url').val ''
     $('#article_summary').val ''
 
@@ -20,12 +20,13 @@ class FormDecorator
 
 ready = ->
 
-  if $('#article_form').length
+  if $('.scrape_link').length
 
     window.form_decorator = new FormDecorator
 
-    $('#article_form').on 'blur','#article_link', ->
-      url = $('#article_link').val()
+    $('.scrape_link').on 'blur', (event) ->
+      url = $('.scrape_link').val()
+      console.log url
       if /http:\/\/|https:\/\//.test(url) # don't bother unless it kind of looks like a url
         form_decorator.loading()
         $.ajax

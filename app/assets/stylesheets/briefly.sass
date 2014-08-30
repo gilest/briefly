@@ -1,8 +1,23 @@
-@import url('http://fonts.googleapis.com/css?family=Maven+Pro:900')
+@import url("http://fonts.googleapis.com/css?family=Maven+Pro:900")
+@import url("http://fonts.googleapis.com/css?family=Montserrat:400,700")
+@import url("http://fonts.googleapis.com/css?family=Merriweather")
 
-@import url('http://fonts.googleapis.com/css?family=Montserrat:400,700')
+$orange: #f36c3d
 
-@import url('http://fonts.googleapis.com/css?family=Merriweather')
+=button($color)
+  background: $color
+  display: inline-block
+  padding: 7px 10px
+  text-align: center
+  text-decoration: none
+  color: #fff
+  text-shadow: 1px 1px 0px #000
+  border: none
+  font-family: 'Montserrat', sans-serif
+  cursor: pointer
+  font-size: 12pt
+  &:hover
+    background: lighten($color, 7%)
 
 *
   margin: 0
@@ -24,7 +39,7 @@ html
 h1
   font-family: 'Maven Pro', sans-serif
   font-size: 40pt
-  color: #f36c3d
+  color: $orange
   padding-top: 35px
   width: 100%
   text-align: center
@@ -32,7 +47,7 @@ h1
   font-weight: 700
   a
     text-decoration: none
-    color: #f36c3d
+    color: $orange
 
 p
   font-size: 10pt
@@ -50,12 +65,21 @@ p
 
 .article
   width: 100%
-  height: 400px
+  height: 414px
   margin-top: 80px
   display: block
   text-decoration: none
 
-.art_tit
+=input
+  text-align: center
+  font-family: 'Montserrat', sans-serif
+  font-size: 12pt
+  color: #2d2d2d
+  text-decoration: none
+  font-weight: normal
+  width: 70%
+
+.art_tit, .art_tit input
   text-align: center
   font-family: 'Montserrat', sans-serif
   font-size: 21pt
@@ -63,10 +87,13 @@ p
   text-decoration: none
   font-weight: normal
   span
-    color: #f36c3d
+    color: $orange
+  input
+    width: 80%
+    display: inline
 
 .article:hover .art_tit
-  color: #f36c3d
+  color: $orange
 
 .art_img
   width: 100%
@@ -74,6 +101,7 @@ p
   background-size: cover
   margin-top: 30px
   position: relative
+  background-color: #BBBBBB
 
 .art_darkness
   position: absolute
@@ -90,7 +118,7 @@ p
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#000000',GradientType=0 )
 
-.art_summary
+.art_summary, .art_summary textarea
   z-index: 2
   text-decoration: none
   color: white
@@ -105,6 +133,10 @@ p
   padding-left: 3%
   padding-right: 3%
   display: block
+  textarea
+    background: transparent
+    border: none
+    color: #fff
 
 .art_overlay
   position: absolute
@@ -115,6 +147,20 @@ p
 
 .article:hover .art_overlay
   display: block
+
+.admin_stats
+  float: left
+  width: 200px
+  .item
+    +button(#A2A2A2)
+    cursor: default
+    &:hover
+      background: #A2A2A2
+
+.admin_controls
+  float: right
+  text-align: right
+  width: 350px
 
 .footer
   width: 100%
@@ -130,7 +176,7 @@ p
 
 .footer:hover
   .foottitle
-    color: #f36c3d
+    color: $orange
   .copyright
     color: darkGray
 
@@ -173,19 +219,55 @@ p
   padding: 0px 9px
   height: 35px
   line-height: 35px
-  border-top: 1px solid #DBC6A1
-  border-left: 1px solid #DBC6A1
+  z-index: 2
+  font-family: 'Montserrat', sans-serif
+  font-size: 10pt
   input
     width: 65px
   input[type='submit']
     width: 50px
 
-.publish_button
-  width: 100%
-  background: #D14A32
-  display: block
-  padding: 7px 10px
+.scrape_link_container
+  margin-top: 80px
+  margin-bottom: 20px
   text-align: center
-  text-decoration: none
+  input[type='text']
+    +input
+
+.article_form
+  margin-top: 0
+  margin-bottom: 80px
+  position: relative
+  .upload_wrap
+    position: absolute
+    width: 100%
+    top: 100px
+    text-align: center
+    input[type='text']
+      +input
+      width: 50%
+    input[type='file']
+      color: #fff
+      width: 170px
+
+.button
+  +button($orange)
+  
+.article_button
+  +button($orange)
+  float: right
+
+.publish_button
+  +button($orange)
+
+.notice
+  position: absolute
+  display: block
+  text-align: center
+  background: rgb(96, 189, 96)
+  width: 100%
+  height: 30px
+  line-height: 30px
   color: #fff
-  text-shadow: 1px 1px 1px #000
+  text-shadow: 1px 1px 0px black
+  font-family: "Montserrat", sans-serif

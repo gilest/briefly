@@ -55,6 +55,10 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def tweeted
+    tweeted? ? 'Tweeted' : 'Not tweeted'
+  end
+
   def as_json(options = {})
     {
       id: position,

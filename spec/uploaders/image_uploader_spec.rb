@@ -17,7 +17,7 @@ describe ImageUploader do
   end
 
   it "should create a banner image at 661x240" do
-    expect(@image_uploader.banner).to have_dimensions(661, 240)
+    expect(@image_uploader.banner).to have_dimensions(960, 350)
   end
 
   it "should make the image readable only to the owner and not executable" do
