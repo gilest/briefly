@@ -18,9 +18,9 @@ Briefly::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.web_domain = 'briefly.local'
-  config.api_domain = 'api.briefly.local'
-  config.shortener_domain = 'brfly.local'
+  config.web_domain = 'briefly.dev'
+  config.api_domain = 'api.briefly.dev'
+  config.shortener_domain = 'brfly.dev'
 
   config.shortener_host = "http://#{config.shortener_domain}:3000"
   config.action_controller.asset_host = "http://#{config.web_domain}:3000"
